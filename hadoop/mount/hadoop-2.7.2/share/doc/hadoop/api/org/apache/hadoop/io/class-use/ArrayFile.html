@@ -1,0 +1,98 @@
+ 
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_DefaultJobPriority( 
+            /* [in] */ long lnDefaultJobPriority) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_Priority( 
+            /* [retval][out] */ long __RPC_FAR *retval) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_Priority( 
+            /* [in] */ long lnPriority) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_BannerPage( 
+            /* [retval][out] */ BSTR __RPC_FAR *retval) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_BannerPage( 
+            /* [in] */ BSTR bstrBannerPage) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_PrintDevices( 
+            /* [retval][out] */ VARIANT __RPC_FAR *retval) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_PrintDevices( 
+            /* [in] */ VARIANT vPrintDevices) = 0;
+        
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_NetAddresses( 
+            /* [retval][out] */ VARIANT __RPC_FAR *retval) = 0;
+        
+        virtual /* [id][propput] */ HRESULT STDMETHODCALLTYPE put_NetAddresses( 
+            /* [in] */ VARIANT vNetAddresses) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IADsPrintQueueVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IADsPrintQueue __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IADsPrintQueue __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfoCount )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [out] */ UINT __RPC_FAR *pctinfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetTypeInfo )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [in] */ UINT iTInfo,
+            /* [in] */ LCID lcid,
+            /* [out] */ ITypeInfo __RPC_FAR *__RPC_FAR *ppTInfo);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetIDsOfNames )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
+            /* [in] */ UINT cNames,
+            /* [in] */ LCID lcid,
+            /* [size_is][out] */ DISPID __RPC_FAR *rgDispId);
+        
+        /* [local] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Invoke )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [in] */ DISPID dispIdMember,
+            /* [in] */ REFIID riid,
+            /* [in] */ LCID lcid,
+            /* [in] */ WORD wFlags,
+            /* [out][in] */ DISPPARAMS __RPC_FAR *pDispParams,
+            /* [out] */ VARIANT __RPC_FAR *pVarResult,
+            /* [out] */ EXCEPINFO __RPC_FAR *pExcepInfo,
+            /* [out] */ UINT __RPC_FAR *puArgErr);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Name )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *retval);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Class )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *retval);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_GUID )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *retval);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_ADsPath )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *retval);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Parent )( 
+            IADsPrintQueue __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *retval);
+        
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_Schema )( 
+            IADsPrintQueue __RPC_FAR *

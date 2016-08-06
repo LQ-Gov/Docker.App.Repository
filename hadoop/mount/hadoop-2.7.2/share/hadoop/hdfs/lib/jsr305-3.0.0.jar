@@ -1,0 +1,396 @@
+77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="T:System.Security.Policy.ApplicationTrustCollection">
+      <summary>表示 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象的集合。无法继承此类。</summary>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.Add(System.Security.Policy.ApplicationTrust)">
+      <summary>向集合中添加一个元素。</summary>
+      <returns>新元素位置处插入的索引。</returns>
+      <param name="trust">要添加的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="trust" /> 为 null。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="trust" /> 中指定的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 的 <see cref="P:System.Security.Policy.ApplicationTrust.ApplicationIdentity" /> 属性为 null。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.AddRange(System.Security.Policy.ApplicationTrust[])">
+      <summary>将指定的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 数组的元素复制到集合末尾。</summary>
+      <param name="trusts">
+        <see cref="T:System.Security.Policy.ApplicationTrust" /> 类型的数组，包含要添加到集合的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="trusts" /> 为 null。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="trust" /> 中指定的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 的 <see cref="P:System.Security.Policy.ApplicationTrust.ApplicationIdentity" /> 属性为 null。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.AddRange(System.Security.Policy.ApplicationTrustCollection)">
+      <summary>将指定 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 的元素复制到集合末尾。</summary>
+      <param name="trusts">
+        <see cref="T:System.Security.Policy.ApplicationTrustCollection" />，包含要添加到集合的对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="trusts" /> 为 null。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="trust" /> 中指定的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 的 <see cref="P:System.Security.Policy.ApplicationTrust.ApplicationIdentity" /> 属性为 null。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.Clear">
+      <summary>从集合中移除所有应用程序信任。</summary>
+      <exception cref="T:System.ArgumentException">集合中某一项的 <see cref="P:System.Security.Policy.ApplicationTrust.ApplicationIdentity" /> 属性为 null。</exception>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.CopyTo(System.Security.Policy.ApplicationTrust[],System.Int32)">
+      <summary>从目标数组的指定索引处开始，将整个集合复制到兼容的一维数组。</summary>
+      <param name="array">
+        <see cref="T:System.Security.Policy.ApplicationTrust" /> 类型的一维数组，它是从当前集合复制的元素的目标数组。</param>
+      <param name="index">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 null。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 小于 <paramref name="array" /> 的下限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。- 或 - <paramref name="index" /> 等于或大于 <paramref name="array" /> 的长度。- 或 - 该 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 中的元素数目大于从 <paramref name="index" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustCollection.Count">
+      <summary>获取集合中包含的项数。</summary>
+      <returns>集合中包含的项数。</returns>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.Find(System.ApplicationIdentity,System.Security.Policy.ApplicationVersionMatch)">
+      <summary>获取集合中与指定应用程序标识匹配的应用程序信任。</summary>
+      <returns>包含所有匹配的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象的 <see cref="T:System.Security.Policy.ApplicationTrustCollection" />。</returns>
+      <param name="applicationIdentity">描述要查找的应用程序的 <see cref="T:System.ApplicationIdentity" /> 对象。</param>
+      <param name="versionMatch">
+        <see cref="T:System.Security.Policy.ApplicationVersionMatch" /> 值之一。</param>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.GetEnumerator">
+      <summary>返回一个可用于循环访问该集合的对象。</summary>
+      <returns>可用于循环访问集合的 <see cref="T:System.Security.Policy.ApplicationTrustEnumerator" />。</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustCollection.IsSynchronized">
+      <summary>获取一个值，该值指示对集合的访问是否为同步的（线程安全）。</summary>
+      <returns>
+            在所有情况下均为 false。</returns>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustCollection.Item(System.Int32)">
+      <summary>获取集合中位于指定索引处的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象。</summary>
+      <returns>集合中指定索引处的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象。</returns>
+      <param name="index">对象在集合中的从零开始的索引。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 大于或等于集合中的对象数。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="index" /> 为负。</exception>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustCollection.Item(System.String)">
+      <summary>获取指定应用程序的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象。</summary>
+      <returns>指定应用程序的 <see cref="T:System.Security.Policy.ApplicationTrust" />，如果无法找到该对象则为 null。</returns>
+      <param name="appFullName">应用程序的全名。</param>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.Remove(System.ApplicationIdentity,System.Security.Policy.ApplicationVersionMatch)">
+      <summary>从集合中移除与指定条件匹配的所有应用程序信任对象。</summary>
+      <param name="applicationIdentity">要移除的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象的 <see cref="T:System.ApplicationIdentity" />。</param>
+      <param name="versionMatch">
+        <see cref="T:System.Security.Policy.ApplicationVersionMatch" /> 值之一。</param>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*" />
+        <IPermission class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="MemberAccess" />
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.Remove(System.Security.Policy.ApplicationTrust)">
+      <summary>从集合中移除指定的应用程序信任。</summary>
+      <param name="trust">要移除的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="trust" /> 为 null。</exception>
+      <exception cref="T:System.ArgumentException">由 <paramref name="trust" /> 指定的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象的 <see cref="P:System.Security.Policy.ApplicationTrust.ApplicationIdentity" /> 属性为 null。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.RemoveRange(System.Security.Policy.ApplicationTrust[])">
+      <summary>从集合中移除指定数组中的应用程序信任对象。</summary>
+      <param name="trusts">包含要从当前集合中移除的项的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 类型的一维数组。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="trusts" /> 为 null。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.RemoveRange(System.Security.Policy.ApplicationTrustCollection)">
+      <summary>从集合中移除指定集合中的应用程序信任对象。</summary>
+      <param name="trusts">包含要从当前集合中移除的项的 <see cref="T:System.Security.Policy.ApplicationTrustCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="trusts" /> 为 null。</exception>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence, ControlPolicy" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustCollection.SyncRoot">
+      <summary>获取可用于同步对集合的访问的对象。</summary>
+      <returns>用于同步对集合的访问的对象。</returns>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>从特定的 <see cref="T:System.Array" /> 索引开始，将 <see cref="T:System.Collections.ICollection" /> 的元素复制到指定的 <see cref="T:System.Array" /> 中。</summary>
+      <param name="array">一维 <see cref="T:System.Array" />，用作从 <see cref="T:System.Collections.ICollection" /> 复制的元素的目标数组。<see cref="T:System.Array" /> 必须具有从零开始的索引。</param>
+      <param name="index">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 null。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。- 或 - <paramref name="index" /> 等于或大于 <paramref name="array" /> 的长度。- 或 - 源 <see cref="T:System.Collections.ICollection" /> 中的元素数目大于从 <paramref name="index" /> 到目标 <paramref name="array" /> 末尾之间的可用空间。</exception>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个循环访问集合的枚举数。</summary>
+      <returns>可用于循环访问集合的 <see cref="T:System.Collections.IEnumerator" />。</returns>
+    </member>
+    <member name="T:System.Security.Policy.ApplicationTrustEnumerator">
+      <summary>表示 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 集合中的 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象的枚举数。</summary>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustEnumerator.Current">
+      <summary>获取 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 集合中的当前 <see cref="T:System.Security.Policy.ApplicationTrust" /> 对象。</summary>
+      <returns>
+        <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 中的当前 <see cref="T:System.Security.Policy.ApplicationTrust" />。</returns>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustEnumerator.MoveNext">
+      <summary>移动到 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 集合中的下一个元素。</summary>
+      <returns>
+            如果枚举数成功地推进到下一个元素，则为 true；如果枚举数越过集合的结尾，则为 false。</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.ApplicationTrustEnumerator.Reset">
+      <summary>将枚举数重置到 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 集合的开头。</summary>
+    </member>
+    <member name="P:System.Security.Policy.ApplicationTrustEnumerator.System#Collections#IEnumerator#Current">
+      <summary>获取 <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 集合中的当前 <see cref="T:System.Object" />。</summary>
+      <returns>
+        <see cref="T:System.Security.Policy.ApplicationTrustCollection" /> 中的当前 <see cref="T:System.Object" />。</returns>
+    </member>
+    <member name="T:System.Security.Policy.ApplicationVersionMatch">
+      <summary>指定在集合中查找应用程序信任时如何匹配版本。</summary>
+    </member>
+    <member name="F:System.Security.Policy.ApplicationVersionMatch.MatchExactVersion">
+      <summary>匹配精确版本。</summary>
+    </member>
+    <member name="F:System.Security.Policy.ApplicationVersionMatch.MatchAllVersions">
+      <summary>匹配所有版本。</summary>
+    </member>
+    <member name="T:System.Security.Policy.CodeConnectAccess">
+      <summary>指定授予代码的网络资源访问权限。</summary>
+    </member>
+    <member name="M:System.Security.Policy.CodeConnectAccess.#ctor(System.String,System.Int32)">
+      <summary>初始化 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 类的新实例。 </summary>
+      <param name="allowScheme">当前实例表示的 URI 方案。</param>
+      <param name="allowPort">当前实例表示的端口。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="allowScheme" /> 为 null。- 或 -<paramref name="allowScheme" /> 为空字符串 ("")。- 或 -<paramref name="allowScheme" /> 包含方案中不允许的字符。- 或 -<paramref name="allowPort" /> 小于 0。- 或 -<paramref name="allowPort" /> 大于 65,535。</exception>
+    </member>
+    <member name="F:System.Security.Policy.CodeConnectAccess.AnyScheme">
+      <summary>包含表示方案通配符的字符串值。</summary>
+    </member>
+    <member name="M:System.Security.Policy.CodeConnectAccess.CreateAnySchemeAccess(System.Int32)">
+      <summary>返回一个 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 实例，该实例表示使用任何方案对指定端口的访问权限。</summary>
+      <returns>指定端口的 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 实例。</returns>
+      <param name="allowPort">返回的实例表示的端口。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="allowPort" /> 小于 0。- 或 -<paramref name="allowPort" /> 大于 65,535。</exception>
+    </member>
+    <member name="M:System.Security.Policy.CodeConnectAccess.CreateOriginSchemeAccess(System.Int32)">
+      <summary>返回一个 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 实例，该实例表示使用代码的原始方案对指定端口的访问权限。</summary>
+      <returns>指定端口的 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 实例。</returns>
+      <param name="allowPort">返回的实例表示的端口。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="allowPort" /> 小于 0。- 或 -<paramref name="allowPort" /> 大于 65,535。</exception>
+    </member>
+    <member name="F:System.Security.Policy.CodeConnectAccess.DefaultPort">
+      <summary>包含用于表示默认端口的值。</summary>
+    </member>
+    <member name="M:System.Security.Policy.CodeConnectAccess.Equals(System.Object)">
+      <summary>返回一个值，指示两个 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 对象是否表示相同的方案和端口。</summary>
+      <returns>
+如果两个对象表示相同的方案和端口，则为 true；否则为 false。</returns>
+      <param name="o">要与当前 <see cref="T:System.Security.Policy.CodeConnectAccess" /> 对象进行比较的对象。</param>
+    </member>
+    <member name="M:System.Security.Policy.CodeConnectAccess.GetHashCode"></member>
+    <member name="F:System.Security.Policy.CodeConnectAccess.OriginPort">
+      <summary>包含用于表示代码原始 URI 中的端口值的值。</summary>
+    </member>
+    <member name="F:System.Security.Policy.CodeConnectAccess.OriginScheme">
+      <summary>包含用于表示代码原始 URL 中的方案的值。</summary>
+    </member>
+    <member name="P:System.Security.Policy.CodeConnectAccess.Port">
+      <summary>获取当前实例表示的端口。</summary>
+      <returns>一个 <see cref="T:System.Int32" /> 值，标识与 <see cref="P:System.Security.Policy.CodeConnectAccess.Scheme" /> 属性一起使用的计算机端口。</returns>
+    </member>
+    <member name="P:System.Security.Policy.CodeConnectAccess.Scheme">
+      <summary>获取当前实例表示的 URI 方案。</summary>
+      <returns>标识 URI 方案的 <see cref="T:System.String" />，已转换为小写。</returns>
+    </member>
+    <member name="T:System.Security.Policy.CodeGroup">
+      <summary>表示抽象基类，必须从该基类中导出代码组的所有实现。</summary>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.#ctor(System.Security.Policy.IMembershipCondition,System.Security.Policy.PolicyStatement)">
+      <summary>初始化 <see cref="T:System.Security.Policy.CodeGroup" /> 的新实例。</summary>
+      <param name="membershipCondition">成员条件，它测试证据以确定此代码组是否应用策略。 </param>
+      <param name="policy">形式为权限集和属性的代码组的策略声明，这些权限集和属性将被授予匹配成员条件的代码。 </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="membershipCondition" /> 参数为 null。 </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="membershipCondition" /> 参数的类型无效。- 或 - <paramref name="policy" /> 参数的类型无效。 </exception>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.AddChild(System.Security.Policy.CodeGroup)">
+      <summary>将子代码组添加到当前代码组。</summary>
+      <param name="group">要作为子级添加的代码组。新的子代码组被添加到列表的末端。 </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="group" /> 参数为 null。 </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="group" /> 参数不是有效的代码组。 </exception>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.AttributeString">
+      <summary>获取代码组策略声明的属性的字符串表示形式。</summary>
+      <returns>代码组策略声明的属性的字符串表示形式。</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.Children">
+      <summary>获取或设置代码组的子代码组的排序列表。</summary>
+      <returns>子代码组的列表。</returns>
+      <exception cref="T:System.ArgumentNullException">试图将该属性设置为 null。 </exception>
+      <exception cref="T:System.ArgumentException">尝试使用非 <see cref="T:System.Security.Policy.CodeGroup" /> 对象的子级列表设置此属性。</exception>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.Copy">
+      <summary>当在派生类中被重写时，制作当前代码组的一个深层副本。</summary>
+      <returns>当前代码组（包括其成员条件和子代码组）的等效副本。</returns>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.CreateXml(System.Security.SecurityElement,System.Security.Policy.PolicyLevel)">
+      <summary>当在派生类中被重写时，序列化导出的代码组所特有的属性和内部状态，并将序列化添加到指定的 <see cref="T:System.Security.SecurityElement" />。</summary>
+      <param name="element">向其中添加序列化的 XML 编码。 </param>
+      <param name="level">代码组所在的策略级别。 </param>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.Description">
+      <summary>获取或设置代码组的说明。</summary>
+      <returns>代码组的说明。</returns>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.Equals(System.Object)">
+      <summary>确定指定的代码组是否等效于当前代码组。</summary>
+      <returns>
+如果指定的代码组等效于当前代码组，则为 true；否则为 false。</returns>
+      <param name="o">要与当前代码组比较的代码组。 </param>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.Equals(System.Security.Policy.CodeGroup,System.Boolean)">
+      <summary>确定指定的代码组是否等效于当前代码组，如果指定，还检查子代码组。</summary>
+      <returns>
+如果指定的代码组等效于当前代码组，则为 true；否则为 false。</returns>
+      <param name="cg">要与当前代码组比较的代码组。 </param>
+      <param name="compareChildren">
+为 true 则还比较子代码组；否则为 false。 </param>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.FromXml(System.Security.SecurityElement)">
+      <summary>从 XML 编码重新构造具有给定状态的安全对象。</summary>
+      <param name="e">用于重新构造安全对象的 XML 编码。 </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="e" /> 参数为 null。 </exception>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.FromXml(System.Security.SecurityElement,System.Security.Policy.PolicyLevel)">
+      <summary>从 XML 编码重新构造具有给定的状态和策略级别的安全对象。</summary>
+      <param name="e">用于重新构造安全对象的 XML 编码。 </param>
+      <param name="level">代码组所在的策略级别。 </param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="e" /> 参数为 null。 </exception>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.GetHashCode">
+      <summary>获取当前代码组的哈希代码。</summary>
+      <returns>当前代码组的哈希代码。</returns>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.MembershipCondition">
+      <summary>获取或设置代码组的成员条件。</summary>
+      <returns>成员条件，它确定该代码组适用于哪个证据。</returns>
+      <exception cref="T:System.ArgumentNullException">试图将该参数设置为 null。 </exception>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.MergeLogic">
+      <summary>当在派生类中被重写时，获取该代码组的合并逻辑。</summary>
+      <returns>该代码组合并逻辑的说明。</returns>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.Name">
+      <summary>获取或设置代码组的名称。</summary>
+      <returns>代码组的名称。</returns>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.ParseXml(System.Security.SecurityElement,System.Security.Policy.PolicyLevel)">
+      <summary>当在派生类中被重写时，从指定的 <see cref="T:System.Security.SecurityElement" /> 重新构造导出的代码组所特有的属性和内部状态。</summary>
+      <param name="e">用于重新构造安全对象的 XML 编码。 </param>
+      <param name="level">代码组所在的策略级别。 </param>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.PermissionSetName">
+      <summary>获取代码组的命名的权限集的名称。</summary>
+      <returns>策略级别的命名的权限集的名称。</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="P:System.Security.Policy.CodeGroup.PolicyStatement">
+      <summary>获取或设置与该代码组关联的策略声明。</summary>
+      <returns>该代码组的策略声明。</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.RemoveChild(System.Security.Policy.CodeGroup)">
+      <summary>移除指定的子代码组。</summary>
+      <param name="group">要作为子级移除的代码组。 </param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="group" /> 参数不是当前代码组的直接子代码组。 </exception>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.Resolve(System.Security.Policy.Evidence)">
+      <summary>当在派生类中被重写时，解析证据集的代码组及其子代的策略。</summary>
+      <returns>由具有可选属性的代码组授予的权限组成的策略声明；或者，如果代码组不适用（成员条件与指定的证据不匹配），则为 null。</returns>
+      <param name="evidence">程序集的证据。 </param>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.ResolveMatchingCodeGroups(System.Security.Policy.Evidence)">
+      <summary>当在派生类中被重写时，解析匹配的代码组。</summary>
+      <returns>一个 <see cref="T:System.Security.Policy.CodeGroup" />，它是匹配代码组的树的根。</returns>
+      <param name="evidence">程序集的证据。 </param>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.ToXml">
+      <summary>创建安全对象及其当前状态的 XML 编码。</summary>
+      <returns>安全对象的 XML 编码，包括任何状态信息。</returns>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="M:System.Security.Policy.CodeGroup.ToXml(System.Security.Policy.PolicyLevel)">
+      <summary>创建安全对象、其当前状态以及代码所在策略级别的 XML 编码。</summary>
+      <returns>安全对象的 XML 编码，包括任何状态信息。</returns>
+      <param name="level">代码组所在的策略级别。 </param>
+      <PermissionSet>
+        <IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="ControlEvidence" />
+      </PermissionSet>
+    </member>
+    <member name="T:System.Security.Policy.Evidence">
+      <summary>定义组成对安全策略决策的输入的一组信息。无法继承此�

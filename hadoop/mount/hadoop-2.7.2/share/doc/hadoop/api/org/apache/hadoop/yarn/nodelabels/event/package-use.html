@@ -1,0 +1,123 @@
+d:element name="secureIndirect" type="dsig:ReferenceType"/>
+					<xsd:element name="binary" type="xsd:base64Binary"/>
+					<xsd:element name="anXml">
+						<xsd:complexType mixed="true">
+							<xsd:sequence>
+								<xsd:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:any namespace="##other" processContents="lax"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+<!--
+	<xsd:complexType name="EncryptedContent">
+		<xsd:complexContent>
+			<xsd:extension base="enc:EncryptedDataType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+-->	
+	<xsd:complexType name="ExerciseMechanism">
+		<xsd:complexContent>
+			<xsd:extension base="r:Condition">
+				<xsd:choice minOccurs="0">
+					<xsd:element name="exerciseService">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element ref="r:serviceReference"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:any namespace="##other" processContents="lax"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExistsRight">
+		<xsd:complexContent>
+			<xsd:extension base="r:Condition">
+				<xsd:sequence minOccurs="0">
+					<xsd:choice>
+						<xsd:element ref="r:grant"/>
+						<xsd:element ref="r:grantGroup"/>
+					</xsd:choice>
+					<xsd:element ref="r:trustRoot" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Fulfiller">
+		<xsd:complexContent>
+			<xsd:extension base="r:Condition">
+				<xsd:sequence minOccurs="0">
+					<xsd:element ref="r:principal"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Grant">
+		<xsd:complexContent>
+			<xsd:extension base="r:Resource">
+				<xsd:choice minOccurs="0">
+					<xsd:sequence>
+						<xsd:element ref="r:forAll" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element ref="r:delegationControl" minOccurs="0"/>
+						<xsd:element ref="r:principal" minOccurs="0"/>
+						<xsd:element ref="r:right"/>
+						<xsd:element ref="r:resource" minOccurs="0"/>
+						<xsd:element ref="r:condition" minOccurs="0"/>
+					</xsd:sequence>
+<!--					<xsd:element name="encryptedGrant" type="r:EncryptedContent"/> -->
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GrantGroup">
+		<xsd:complexContent>
+			<xsd:extension base="r:Resource">
+				<xsd:choice minOccurs="0">
+					<xsd:sequence>
+						<xsd:element ref="r:forAll" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element ref="r:delegationControl" minOccurs="0"/>
+						<xsd:element ref="r:principal" minOccurs="0"/>
+						<xsd:element ref="r:condition" minOccurs="0"/>
+						<xsd:choice maxOccurs="unbounded">
+							<xsd:element ref="r:grant"/>
+							<xsd:element ref="r:grantGroup"/>
+						</xsd:choice>
+					</xsd:sequence>
+<!--					<xsd:element name="encryptedGrantGroup" type="r:EncryptedContent"/> -->
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GrantGroupPattern">
+		<xsd:complexContent>
+			<xsd:extension base="r:ResourcePatternAbstract">
+				<xsd:sequence minOccurs="0">
+					<xsd:choice minOccurs="0">
+						<xsd:element ref="r:principal"/>
+						<xsd:element ref="r:principalPattern"/>
+					</xsd:choice>
+					<xsd:choice minOccurs="0">
+						<xsd:element ref="r:condition"/>
+						<xsd:element ref="r:conditionPattern"/>
+					</xsd:choice>
+					<xsd:choice maxOccurs="unbounded">
+						<xsd:choice>
+							<xsd:element ref="r:grant"/>
+							<xsd:element ref="r:grantPattern"/>
+						</xsd:choice>
+						<xsd:choice>
+							<xsd:element ref="r:grantGroup"/>
+							<xsd:element ref="r:grantGroupPattern"/>
+						</xsd:choice>
+					</xsd:choice>
+					<xsd:element name="wholeGrantGroupExpression" type="r:AnXmlExpression" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GrantPatt

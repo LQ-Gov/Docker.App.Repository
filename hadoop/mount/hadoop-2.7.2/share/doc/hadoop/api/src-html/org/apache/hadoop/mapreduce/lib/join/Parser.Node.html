@@ -1,0 +1,494 @@
+cutionScenarioEnd.PrincipalEndInfoFailure" value="Script for %3 failed in %1 seconds." />
+        <string id="ScriptExecutionScenarioEnd.PrincipalEndInfoSuccess" value="Completed %4 for %3 in %1 seconds." />
+        <string id="ScriptExecutionScenarioStart.PrincipalStartInfo" value="Starting %2 for %1." />
+        <string id="ScriptTypeMap.LogoffScript" value="Logoff script" />
+        <string id="ScriptTypeMap.LogonScript" value="Logon script" />
+        <string id="ScriptTypeMap.ShutdownScript" value="Shutdown script" />
+        <string id="ScriptTypeMap.StartupScript" value="Startup script" />
+        <string id="ServiceStateExtensionFailureFound" value="An unfinished invocation of the Group Policy Client Side Extension %1 from a previous instance of the Group Policy Service has been detected.  This may indicate that the extension caused the Group Policy Client Service to terminate unexpectedly." />
+        <string id="SyncReasonMap.CSERequiresForeground" value="CSE requires foreground" />
+        <string id="SyncReasonMap.CSEReturnedError" value="CSE returned error" />
+        <string id="SyncReasonMap.FirstPolicyRefresh" value="First policy refresh" />
+        <string id="SyncReasonMap.ForcedSyncRefresh" value="Forced synchronous refresh" />
+        <string id="SyncReasonMap.NoNeedForSync" value="No need for synchronous" />
+        <string id="SyncReasonMap.ScriptsSync" value="Scripts synchronous" />
+        <string id="SyncReasonMap.SKU" value="SKU" />
+        <string id="SyncReasonMap.SyncDueToInternalProcessingError" value="Synchronous due to internal processing error" />
+        <string id="SyncReasonMap.SyncPolicy" value="Synchronous policy" />
+        <string id="TIME_SKEW" value="Windows was unable to determine whether new Group Policy settings defined by a network administrator should be enforced for this user or computer because this computer's clock is not synchronized with the clock of one of the domain controllers for the domain. Because of this issue, this computer system may not be in compliance with the network administrator’s requirements, and users of this system may not be able to use some functionality on the network. Windows will periodically attempt to retry this operation, and it is possible that either this system or the domain controller will correct the time settings without intervention by an administrator, so the problem will be corrected. %n%nIf this issue persists for more than an hour, checking the local system's clock settings to ensure they are accurate and are synchronized with the clocks on the network's domain controllers is one way to resolve this problem. A network administrator may be required to resolve the issue if correcting the local time settings does not address the problem." />
+        <string id="TOO_MANY_GPOS" value="The processing of Group Policy failed. Windows attempted to query the list of Group Policy objects and exceeded the maximum limit (999)." />
+        <string id="UnusedPlaceHolder.AssertMessage" value="Invalid Error Message." />
+        <string id="USER_POLICY_APPLIED_CHANGES" value="The Group Policy settings for the user were processed successfully. New settings from %6 Group Policy objects were detected and applied." />
+        <string id="USER_POLICY_APPLIED_NO_CHANGES" value="The Group Policy settings for the user were processed successfully. There were no changes detected since the last successful processing of Group Policy." />
+        <string id="UserTypeMap.Computer" value="Computer" />
+        <string id="UserTypeMap.User" value="User" />
+        <string id="WarningOpnEvent.WarningInfo" value="Warning: %1 Warning code %2." />
+        <string id="WarningOpnEvent.WarningInfoWithString" value="Warning: %1 Parameter: %3 : Warning code %2." />
+        <string id="WinlogonNotification.Info" value="Group Policy received the notification %1 from Winlogon for session %2." />
+        <string id="WMIFILTER_NOTFOUND" value="Windows was unable to read the Windows Management Instrumentation (WMI) filter information associated with the Group Policy object %8.This may be caused by a deleted WMI Filter defined in the domain that is still in use by Group Policy objects. Group Policy settings for this Group Policy object will not be enforced. Other Group Policy objects may still apply. Windows will attempt to retrieve this information at the next policy cycle. This speciffic problem may be resolved by identifying all GPOs that reference the WMI filter and removing the references. Contact an administrator if this event recurs for several hours." />
+        <string id="X_FOREST_DISCOVERY_FAILED" value="The processing of Group Policy failed. Windows could not determine if the user and computer accounts are in the same forest. Ensure the user domain name matches the name of a trusted domain that resides in the same forest as the computer account." />
+        <string id="X_FOREST_GP_DISABLED" value="The user account is in a different forest than the computer account. The processing of Group Policy from another forest is not allowed. Group Policy will be processed using Loopback Replace mode. The scope of the user policy settings will be determined by the location of the computer object in Active Directory. The settings will be aquired from the User Configuration of these policies." />
+      </stringTable>
+    </resources>
+  </localization>
+  <instrumentation>
+    <events xmlns="http://schemas.microsoft.com/win/2004/08/events" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <provider guid="{aea1b4fa-97d1-45f2-a64c-4d69fffd92c9}" message="$(string.eventProviderName)" messageFileName="%systemroot%\system32\gpsvc.dll" name="Microsoft-Windows-GroupPolicy" parameterFileName="%systemroot%\system32\gpsvc.dll" resourceFileName="%systemroot%\system32\gpsvc.dll" symbol="gpEventProvider">
+        <channels>
+          <importChannel chid="System" name="System" />
+          <channel access="O:BAG:SYD:(A;;0xf0007;;;SY)(A;;0x7;;;BA)(A;;0x1;;;LS)(A;;0x1;;;NS)" chid="opnChannel" enabled="true" isolation="System" message="$(string.operationalChannelName)" name="Microsoft-Windows-GroupPolicy/Operational" symbol="GP_OPN_CHANNEL" type="Operational">
+            <logging>
+              <maxSize>4194304</maxSize>
+            </logging>
+          </channel>
+        </channels>
+        <maps>
+          <valueMap name="SyncReasonMap">
+            <map message="$(string.SyncReasonMap.NoNeedForSync)" value="0" />
+            <map message="$(string.SyncReasonMap.FirstPolicyRefresh)" value="1" />
+            <map message="$(string.SyncReasonMap.CSERequiresForeground)" value="2" />
+            <map message="$(string.SyncReasonMap.CSEReturnedError)" value="3" />
+            <map message="$(string.SyncReasonMap.ForcedSyncRefresh)" value="4" />
+            <map message="$(string.SyncReasonMap.SyncPolicy)" value="5" />
+            <map message="$(string.SyncReasonMap.SKU)" value="7" />
+            <map message="$(string.SyncReasonMap.ScriptsSync)" value="8" />
+            <map message="$(string.SyncReasonMap.SyncDueToInternalProcessingError)" value="9" />
+          </valueMap>
+          <valueMap name="PolicyApplicationModeMap">
+            <map message="$(string.PolicyApplicationModeMap.Background)" value="0" />
+            <map message="$(string.PolicyApplicationModeMap.ForegroundSync)" value="1" />
+            <map message="$(string.PolicyApplicationModeMap.ForegroundAsync)" value="2" />
+          </valueMap>
+          <valueMap name="PolicyProcessingModeMap">
+            <map message="$(string.PolicyProcessingModeMap.Normal)" value="0" />
+            <map message="$(string.PolicyProcessingModeMap.Merge)" value="1" />
+            <map message="$(string.PolicyProcessingModeMap.Replace)" value="2" />
+          </valueMap>
+          <valueMap name="ScriptTypeMap">
+            <map message="$(string.ScriptTypeMap.StartupScript)" value="0" />
+            <map message="$(string.ScriptTypeMap.LogonScript)" value="1" />
+            <map message="$(string.ScriptTypeMap.LogoffScript)" value="2" />
+            <map message="$(string.ScriptTypeMap.ShutdownScript)" value="3" />
+          </valueMap>
+          <valueMap name="UserTypeMap">
+            <map message="$(string.UserTypeMap.User)" value="0" />
+            <map message="$(string.UserTypeMap.Computer)" value="1" />
+          </valueMap>
+          <valueMap name="NotificationTypeMap">
+            <map message="$(string.NotificationTypeMap.CreateSession)" value="0" />
+            <map message="$(string.NotificationTypeMap.Logon)" value="1" />
+            <map message="$(string.NotificationTypeMap.Logoff)" value="2" />
+            <map message="$(string.NotificationTypeMap.StartShell)" value="3" />
+            <map message="$(string.NotificationTypeMap.EndShell)" value="4" />
+          </valueMap>
+          <valueMap name="SCMNotificationTypeMap">
+            <map message="$(string.SCMNotificationTypeMap.PreShutdown)" value="0" />
+          </valueMap>
+        </maps>
+        <templates>
+          <template tid="tid_GP_AdminEvent_INFO">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UnicodeString" name="DCName" />
+          </template>
+          <template tid="tid_GP_AdminEvent_INFO_EX">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UInt32" name="NumberOfGroupPolicyObjects" />
+          </template>
+          <template tid="tid_GP_AdminEvent_INIT_FAILURE">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+          </template>
+          <template tid="tid_GP_AdminEvent_GENERIC_FAILURE">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UnicodeString" name="DCName" />
+          </template>
+          <template tid="tid_GP_AdminEvent_GPO_FAILURE">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UnicodeString" name="GPOCNName" />
+          </template>
+          <template tid="tid_GP_AdminEvent_DS_FAILURE">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UnicodeString" name="DSObjectName" />
+          </template>
+          <template tid="tid_GP_AdminEvent_GPO_FILE_FAILURE">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UnicodeString" name="GPOCNName" />
+            <data inType="win:UnicodeString" name="FilePath" />
+          </template>
+          <template tid="tid_GP_AdminEvent_EXT_FAILURE">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ProcessingMode" />
+            <data inType="win:UInt32" name="ProcessingTimeInMilliseconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UnicodeString" name="ExtensionName" />
+            <data inType="win:UnicodeString" name="ExtensionId" />
+          </template>
+          <template tid="tid_GP_AdminEvent_FAILED_EXTENSION_RECOVERY">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UnicodeString" name="ExtensionName" />
+            <data inType="win:UnicodeString" name="ExtensionId" />
+          </template>
+          <template tid="tid_GP_GPScript_FAILED">
+            <data inType="win:UInt32" name="SupportInfo1" />
+            <data inType="win:UInt32" name="SupportInfo2" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UInt32" map="ScriptTypeMap" name="ScriptType" />
+            <data inType="win:UnicodeString" name="GPODisplayName" />
+            <data inType="win:UnicodeString" name="GPOFileSystemPath" />
+            <data inType="win:UnicodeString" name="GPOScriptCommandString" />
+          </template>
+          <template tid="PolicyApplicationScenarioStart">
+            <data inType="win:GUID" name="PolicyActivityId" outType="xs:GUID" />
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:UInt32" map="UserTypeMap" name="IsMachine" />
+            <data inType="win:Boolean" name="IsDomainJoined" />
+            <data inType="win:Boolean" name="IsBackgroundProcessing" />
+            <data inType="win:Boolean" name="IsAsyncProcessing" />
+            <data inType="win:Boolean" name="IsServiceRestart" />
+            <data inType="win:UInt32" map="SyncReasonMap" name="ReasonForSyncProcessing" />
+          </template>
+          <template tid="ComputerInformation">
+            <data inType="win:UInt32" name="MachineRole" />
+            <data inType="win:UnicodeString" name="NetworkName" />
+          </template>
+          <template tid="PrincipalInformation">
+            <data inType="win:UnicodeString" name="PrincipalCNName" />
+            <data inType="win:UnicodeString" name="PrincipalDomainName" />
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UnicodeString" name="DCDomainName" />
+          </template>
+          <template tid="DCInformation">
+            <data inType="win:UnicodeString" name="DCName" />
+            <data inType="win:UnicodeString" name="DCIPAddress" />
+          </template>
+          <template tid="PolicyProcessingMode">
+            <data inType="win:UInt32" map="PolicyProcessingModeMap" name="PolicyProcessingMode" />
+          </template>
+          <template tid="NetworkInformation">
+            <data inType="win:UInt32" name="BandwidthInkbps" />
+            <data inType="win:Boolean" name="IsSlowLink" />
+            <data inType="win:UInt32" name="ThresholdInkbps" />
+            <data inType="win:UInt32" map="PolicyApplicationModeMap" name="PolicyApplicationMode" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="LinkDescription" />
+          </template>
+          <template tid="GPOListInformation">
+            <data inType="win:UnicodeString" name="DescriptionString" />
+            <data inType="win:UnicodeString" name="GPOInfoList" />
+          </template>
+          <template tid="CSEProcessingScenarioStart">
+            <data inType="win:GUID" name="CSEExtensionId" outType="xs:GUID" />
+            <data inType="win:UnicodeString" name="CSEExtensionName" />
+            <data inType="win:Boolean" name="IsExtensionAsyncProcessing" />
+            <data inType="win:Boolean" name="IsGPOListChanged" />
+            <data inType="win:UnicodeString" name="GPOListStatusString" />
+            <data inType="win:UnicodeString" name="DescriptionString" />
+            <data inType="win:UnicodeString" name="ApplicableGPOList" />
+          </template>
+          <template tid="CSEProcessingScenarioEnd">
+            <data inType="win:UInt32" name="CSEElaspedTimeInMilliSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="CSEExtensionName" />
+            <data inType="win:GUID" name="CSEExtensionId" outType="xs:GUID" />
+          </template>
+          <template tid="NextPolicyApplicationInfo">
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:UInt32" name="NextPolicyApplicationTime" />
+            <data inType="win:UnicodeString" name="NextPolicyApplicationTimeUnit" />
+          </template>
+          <template tid="PolicyApplicationScenarioEnd">
+            <data inType="win:UInt32" name="PolicyElaspedTimeInSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:UInt32" map="UserTypeMap" name="IsMachine" />
+            <data inType="win:Boolean" name="IsConnectivityFailure" />
+          </template>
+          <template tid="GPMachineStartupWaitInfo">
+            <data inType="win:Boolean" name="IsPolicyConfigured" />
+            <data inType="win:UInt32" name="MaxTimeToWait" />
+            <data inType="win:UInt32" name="TimeWaitedAtStartup" />
+            <data inType="win:UInt32" name="PrevAvgWaitTimeout" />
+            <data inType="win:UInt32" name="NewAvgWaitTimeout" />
+            <data inType="win:Boolean" name="DidWaitTimeout" />
+          </template>
+          <template tid="GPNlaSvcNotStartedWarning">
+            <data inType="win:UnicodeString" name="DisplayName" />
+          </template>
+          <template tid="APIStartCallTracing">
+            <data inType="win:UnicodeString" name="OperationDescription" />
+            <data inType="win:UnicodeString" name="Parameter" />
+          </template>
+          <template tid="APIEndCallTracing">
+            <data inType="win:UInt32" name="OperationElaspedTimeInMilliSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="OperationDescription" />
+            <data inType="win:UnicodeString" name="Parameter" />
+          </template>
+          <template tid="ErrorOperationalEvent">
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+          </template>
+          <template tid="WarningOperationalEvent">
+            <data inType="win:UnicodeString" name="WarningDescription" />
+            <data inType="win:UInt32" name="WarningCode" outType="win:HexInt32" />
+          </template>
+          <template tid="InformationalOperationalEvent">
+            <data inType="win:UnicodeString" name="InfoDescription" />
+          </template>
+          <template tid="ErrorOperationalEventWithString">
+            <data inType="win:UnicodeString" name="ErrorDescription" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="OperationParameter1" />
+          </template>
+          <template tid="WarningOperationalEventWithString">
+            <data inType="win:UnicodeString" name="WarningDescription" />
+            <data inType="win:UInt32" name="WarningCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="OperationParameter1" />
+          </template>
+          <template tid="InformationalOperationalEventWithString">
+            <data inType="win:UnicodeString" name="InfoDescription" />
+            <data inType="win:UnicodeString" name="OperationParameter1" />
+          </template>
+          <template tid="ScriptExecutionScenarioStart">
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:UInt32" map="ScriptTypeMap" name="ScriptType" />
+            <data inType="win:Boolean" name="IsScriptHidden" />
+            <data inType="win:Boolean" name="IsScriptSync" />
+            <data inType="win:Boolean" name="IsScriptMinimized" />
+            <data inType="win:UInt32" name="SessionId" />
+          </template>
+          <template tid="ScriptExecutionScenarioEnd">
+            <data inType="win:UInt32" name="ScriptElaspedTimeInSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:UInt32" map="ScriptTypeMap" name="ScriptType" />
+          </template>
+          <template tid="ScriptStartInformation">
+            <data inType="win:UnicodeString" name="ScriptName" />
+            <data inType="win:UnicodeString" name="ScriptFileSystemPath" />
+            <data inType="win:UnicodeString" name="ScriptArguments" />
+          </template>
+          <template tid="ScriptEndInformation">
+            <data inType="win:UInt32" name="ScriptElaspedTimeInSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="ScriptName" />
+          </template>
+          <template tid="WinlogonNotifications">
+            <data inType="win:UInt32" map="NotificationTypeMap" name="NotificationType" />
+            <data inType="win:UInt32" name="SessionId" />
+          </template>
+          <template tid="SCMNotifications">
+            <data inType="win:UInt32" map="SCMNotificationTypeMap" name="NotificationType" />
+          </template>
+          <template tid="NetworkBandwidthInfo">
+            <data inType="win:UInt32" name="NetworkBandwidthInKbps" />
+          </template>
+          <template tid="DCDiscoverScenarioEnd">
+            <data inType="win:UInt32" name="DCDiscoveryTimeInMilliSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+          </template>
+          <template tid="ServiceConfigurationChange">
+            <data inType="win:UnicodeString" name="UpdateCauseExtensionName" />
+            <data inType="win:UnicodeString" name="UpdateCauseExtensionId" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+          </template>
+          <template tid="OLD_PolicyApplicationScenarioStart">
+            <data inType="win:GUID" name="PolicyActivityId" outType="xs:GUID" />
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:Boolean" name="IsMachine" />
+            <data inType="win:Boolean" name="IsDomainJoined" />
+            <data inType="win:Boolean" name="IsBackgroundProcessing" />
+            <data inType="win:Boolean" name="IsAsyncProcessing" />
+            <data inType="win:Boolean" name="IsServiceRestart" />
+            <data inType="win:UInt32" map="SyncReasonMap" name="ReasonForSyncProcessing" />
+          </template>
+          <template tid="OLD_PolicyApplicationScenarioEnd">
+            <data inType="win:UInt32" name="PolicyElaspedTimeInSeconds" />
+            <data inType="win:UInt32" name="ErrorCode" outType="win:HexInt32" />
+            <data inType="win:UnicodeString" name="PrincipalSamName" />
+            <data inType="win:Boolean" name="IsMachine" />
+            <data inType="win:Boolean" name="IsConnectivityFailure" />
+          </template>
+        </templates>
+        <events>
+          <event channel="System" level="win:Error" message="$(string.FAILED_ALLOCATION)" opcode="win:Start" symbol="gpEvent_FAILED_ALLOCATION" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1002" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_DS_BIND)" opcode="win:Start" symbol="gpEvent_FAILED_DS_BIND" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1006" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_QUERY_SITE)" opcode="win:Start" symbol="gpEvent_FAILED_QUERY_SITE" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1007" />
+          <event channel="System" level="win:Error" message="$(string.GPO_QUERY_FAILED)" opcode="win:Start" symbol="gpEvent_GPO_QUERY_FAILED" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1030" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_ROLE)" opcode="win:Start" symbol="gpEvent_FAILED_ROLE" template="tid_GP_AdminEvent_INIT_FAILURE" value="1052" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_USERNAME)" opcode="win:Start" symbol="gpEvent_FAILED_USERNAME" template="tid_GP_AdminEvent_INIT_FAILURE" value="1053" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_DSNAME)" opcode="win:Start" symbol="gpEvent_FAILED_DSNAME" template="tid_GP_AdminEvent_INIT_FAILURE" value="1054" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_MACHINENAME)" opcode="win:Start" symbol="gpEvent_FAILED_MACHINENAME" template="tid_GP_AdminEvent_INIT_FAILURE" value="1055" />
+          <event channel="System" level="win:Error" message="$(string.GPT_NOTACCESSIBLE)" opcode="win:Start" symbol="gpEvent_GPT_NOTACCESSIBLE" template="tid_GP_AdminEvent_GPO_FILE_FAILURE" value="1058" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_FILTER_CHECK)" opcode="win:Start" symbol="gpEvent_FAILED_FILTER_CHECK" template="tid_GP_AdminEvent_GPO_FAILURE" value="1065" />
+          <event channel="System" level="win:Informational" message="$(string.GPO_PROC_STOPPED)" opcode="win:Start" symbol="gpEvent_GPO_PROC_STOPPED" template="tid_GP_AdminEvent_INFO" value="1068" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_GPO_SEARCH)" opcode="win:Start" symbol="gpEvent_FAILED_GPO_SEARCH" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1079" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_OU_SEARCH)" opcode="win:Start" symbol="gpEvent_FAILED_OU_SEARCH" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1080" />
+          <event channel="System" level="win:Warning" message="$(string.EXT_FAILED)" opcode="win:Start" symbol="gpEvent_EXT_FAILED" template="tid_GP_AdminEvent_EXT_FAILURE" value="1085" />
+          <event channel="System" level="win:Error" message="$(string.TOO_MANY_GPOS)" opcode="win:Start" symbol="gpEvent_TOO_MANY_GPOS" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1088" />
+          <event channel="System" level="win:Warning" message="$(string.FAILED_RSOPCORE_SESSION_STATUS)" opcode="win:Start" symbol="gpEvent_FAILED_RSOPCORE_SESSION_STATUS" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1089" />
+          <event channel="System" level="win:Warning" message="$(string.FAILED_WBEM_SERVICES)" opcode="win:Start" symbol="gpEvent_FAILED_WBEM_SERVICES" template="tid_GP_AdminEvent_INFO" value="1090" />
+          <event channel="System" level="win:Warning" message="$(string.EXT_RSOP_FAILED)" opcode="win:Start" symbol="gpEvent_EXT_RSOP_FAILED" template="tid_GP_AdminEvent_EXT_FAILURE" value="1091" />
+          <event channel="System" level="win:Warning" message="$(string.RSOP_FAILED)" opcode="win:Start" symbol="gpEvent_RSOP_FAILED" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1095" />
+          <event channel="System" level="win:Error" message="$(string.REGISTRY_TEMPLATE_ERROR)" opcode="win:Start" symbol="gpEvent_REGISTRY_TEMPLATE_ERROR" template="tid_GP_AdminEvent_GPO_FILE_FAILURE" value="1096" />
+          <event channel="System" level="win:Error" message="$(string.FAILED_MACHINE_TOKEN)" opcode="win:Start" symbol="gpEvent_FAILED_MACHINE_TOKEN" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1097" />
+          <event channel="System" level="win:Error" message="$(string.OU_NOTFOUND)" opcode="win:Start" symbol="gpEvent_OU_NOTFOUND" template="tid_GP_AdminEvent_DS_FAILURE" value="1101" />
+          <event channel="System" level="win:Warning" message="$(string.X_FOREST_GP_DISABLED)" opcode="win:Start" symbol="gpEvent_X_FOREST_GP_DISABLED" template="tid_GP_AdminEvent_INFO" value="1109" />
+          <event channel="System" level="win:Error" message="$(string.X_FOREST_DISCOVERY_FAILED)" opcode="win:Start" symbol="gpEvent_X_FOREST_DISCOVERY_FAILED" template="tid_GP_AdminEvent_INIT_FAILURE" value="1110" />
+          <event channel="System" level="win:Warning" message="$(string.CSE_REQUIRES_SYNC)" opcode="win:Start" symbol="gpEvent_CSE_REQUIRES_SYNC" template="tid_GP_AdminEvent_EXT_FAILURE" value="1112" />
+          <event channel="System" level="win:Error" message="$(string.INTERNAL_SYSTEM_ERROR)" opcode="win:Start" symbol="gpEvent_INTERNAL_SYSTEM_ERROR" template="tid_GP_AdminEvent_INIT_FAILURE" value="1125" />
+          <event channel="System" level="win:Error" message="$(string.TIME_SKEW)" opcode="win:Start" symbol="gpEvent_TIME_SKEW" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1126" />
+          <event channel="System" level="win:Error" message="$(string.CATCH_ALL)" opcode="win:Start" symbol="gpEvent_CATCH_ALL" template="tid_GP_AdminEvent_GENERIC_FAILURE" value="1127" />
+          <event channel="System" level="win:Informational" message="$(string.MACHINE_POLICY_APPLIED_NO_CHANGES)" opcode="win:Start" symbol="gpEvent_MACHINE_POLICY_APPLIED_NO_CHANGES" template="tid_GP_AdminEvent_INFO" value="1500" />
+          <event channel="System" level="win:Informational" message="$(string.USER_POLICY_APPLIED_NO_CHANGES)" opcode="win:Start" symbol="gpEvent_USER_POLICY_APPLIED_NO_CHANGES" template="tid_GP_AdminEvent_INFO" value="1501" />
+          <event channel="System" level="win:Informational" message="$(string.MACHINE_POLICY_APPLIED_CHANGES)" opcode="win:Start" symbol="gpEvent_MACHINE_POLICY_APPLIED_CHANGES" template="tid_GP_AdminEvent_INFO_EX" value="1502" />
+          <event channel="System" level="win:Informational" message="$(string.USER_POLICY_APPLIED_CHANGES)" opcode="win:Start" symbol="gpEvent_USER_POLICY_APPLIED_CHANGES" template="tid_GP_AdminEvent_INFO_EX" value="1503" />
+          <event channel="System" level="win:Warning" message="$(string.EXTENSION_EXECUTION_DENIED)" symbol="gpEvent_EXTENSION_EXECUTION_DENIED" template="tid_GP_AdminEvent_FAILED_EXTENSION_RECOVERY" value="1128" />
+          <event channel="System" level="win:Error" message="$(string.NO_NETWORK)" symbol="gpEvent_NO_NETWORK" template="tid_GP_AdminEvent_INIT_FAILURE" value="1129" />
+          <event channel="System" level="win:Error" message="$(string.ERROR.SCRIPT_FAILURE)" symbol="gpEvent_SCRIPT_FAILURE" template="tid_GP_GPScript_FAILED" value="1130" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.MachineStartupInfo)" opcode="win:Start" symbol="MACHINE_STARTUP_POLICY_START" template="PolicyApplicationScenarioStart" value="4000" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.MachineEndInfoSuccess)" opcode="win:Stop" symbol="MACHINE_STARTUP_POLICY_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8000" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6000" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.MachineEndInfoFailure)" opcode="win:Stop" symbol="MACHINE_STARTUP_POLICY_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7000" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.UserLogonInfo)" opcode="win:Start" symbol="USER_LOGON_POLICY_START" template="PolicyApplicationScenarioStart" value="4001" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.UserEndInfoSuccess)" opcode="win:Stop" symbol="USER_LOGON_POLICY_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8001" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6001" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.UserEndInfoFailure)" opcode="win:Stop" symbol="USER_LOGON_POLICY_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7001" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.MachineNetworkChangeStart)" opcode="win:Start" symbol="MACHINE_POLICY_NETWORK_CHANGE_START" template="PolicyApplicationScenarioStart" value="4002" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.MachineNetworkChangeEndSuccess)" opcode="win:Stop" symbol="MACHINE_POLICY_NETWORK_CHANGE_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8002" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6002" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.MachineNetworkChangeEndFailure)" opcode="win:Stop" symbol="MACHINE_POLICY_NETWORK_CHANGE_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7002" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.UserNetworkChangeStart)" opcode="win:Start" symbol="USER_POLICY_NETWORK_CHANGE_START" template="PolicyApplicationScenarioStart" value="4003" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.UserNetworkChangeEndSuccess)" opcode="win:Stop" symbol="USER_POLICY_NETWORK_CHANGE_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8003" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6003" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.UserNetworkChangeEndFailure)" opcode="win:Stop" symbol="USER_POLICY_NETWORK_CHANGE_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7003" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.MachineRefreshPolicyStart)" opcode="win:Start" symbol="MACHINE_MANUAL_REFRESH_POLICY_START" template="PolicyApplicationScenarioStart" value="4004" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.MachineRefreshPolicyEndSuccess)" opcode="win:Stop" symbol="MACHINE_MANUAL_REFRESH_POLICY_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8004" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6004" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.MachineRefreshPolicyEndFailure)" opcode="win:Stop" symbol="MACHINE_MANUAL_REFRESH_POLICY_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7004" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.UserRefreshPolicyStart)" opcode="win:Start" symbol="USER_MANUAL_REFRESH_POLICY_START" template="PolicyApplicationScenarioStart" value="4005" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.UserRefreshPolicyEndSuccess)" opcode="win:Stop" symbol="USER_MANUAL_REFRESH_POLICY_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8005" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6005" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.UserRefreshPolicyEndFailure)" opcode="win:Stop" symbol="USER_MANUAL_REFRESH_POLICY_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7005" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.MachineBackgroundPolicyStart)" opcode="win:Start" symbol="MACHINE_PERIODIC_REFRESH_POLICY_START" template="PolicyApplicationScenarioStart" value="4006" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.MachineBackgroundPolicyEndSuccess)" opcode="win:Stop" symbol="MACHINE_PERIODIC_REFRESH_POLICY_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8006" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6006" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.MachineBackgroundPolicyEndFailure)" opcode="win:Stop" symbol="MACHINE_PERIODIC_REFRESH_POLICY_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7006" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.UserBackgroundPolicyStart)" opcode="win:Start" symbol="USER_PERIODIC_REFRESH_POLICY_START" template="PolicyApplicationScenarioStart" value="4007" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.UserBackgroundPolicyEndSuccess)" opcode="win:Stop" symbol="USER_PERIODIC_REFRESH_POLICY_END_SUCCESS" template="PolicyApplicationScenarioEnd" value="8007" version="1" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6007" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.UserBackgroundPolicyEndFailure)" opcode="win:Stop" symbol="USER_PERIODIC_REFRESH_POLICY_END_FAILURE" template="PolicyApplicationScenarioEnd" value="7007" version="1" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.DCInformation.Info)" symbol="DC_INFORMATION_SUCCESS" template="DCInformation" value="5308" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6308" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7308" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.ComputerInformation.Info)" symbol="COMPUTER_INFORMATION_SUCCESS" template="ComputerInformation" value="5309" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6309" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7309" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PrincipalInformation.Info)" symbol="PRINCIPAL_INFORMATION_SUCCESS" template="PrincipalInformation" value="5310" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6310" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7310" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyProcessingMode.Info)" symbol="POLICY_PROCESSING_MODE_SUCCESS" template="PolicyProcessingMode" value="5311" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6311" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7311" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.AppliedGPOListInformation.Info)" symbol="APPLIED_GPO_LIST_INFORMATION_SUCCESS" template="GPOListInformation" value="5312" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6312" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7312" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.DeniedGPOListInformation.Info)" symbol="DENIED_GPO_LIST_INFORMATION_SUCCESS" template="GPOListInformation" value="5313" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6313" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7313" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.NetworkInformation.Info)" symbol="NETWORK_INFORMATION_SUCCESS" template="NetworkInformation" value="5314" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.NetworkInformation.Warning)" symbol="NETWORK_INFORMATION_WARNING" template="NetworkInformation" value="6314" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7314" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.NextPolicyRefresh.Info)" symbol="NEXT_POLICY_APPLICATION_INFORMATION_SUCCESS" template="NextPolicyApplicationInfo" value="5315" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6315" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7315" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.CSEProcessingScenarioStart.CSEStartInfo)" opcode="win:Start" symbol="CSE_PROCESSING_START" template="CSEProcessingScenarioStart" value="4016" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.CSEProcessingScenarioEnd.CSEEndInfo)" opcode="win:Stop" symbol="CSE_PROCESSING_START_END_SUCCESS" template="CSEProcessingScenarioEnd" value="5016" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.CSEProcessingScenarioEnd.CSEEndInfo)" opcode="win:Stop" symbol="CSE_PROCESSING_START_END_WARNING" template="CSEProcessingScenarioEnd" value="6016" />
+          <event channel="opnChannel" level="win:Error" message="$(string.CSEProcessingScenarioEnd.CSEEndInfo)" opcode="win:Stop" symbol="CSE_PROCESSING_START_END_FAILURE" template="CSEProcessingScenarioEnd" value="7016" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.APIStartCallTracing.APIStartInfo)" symbol="API_CALL_TRACING_START" template="APIStartCallTracing" value="4017" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.APIEndCallTracing.APIEndInfoSuccess)" symbol="API_CALL_TRACING_END_SUCCESS" template="APIEndCallTracing" value="5017" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6017" />
+          <event channel="opnChannel" level="win:Error" message="$(string.APIEndCallTracing.APIEndInfoFailure)" symbol="API_CALL_TRACING_END_FAILURE" template="APIEndCallTracing" value="7017" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.ScriptExecutionScenarioStart.PrincipalStartInfo)" opcode="win:Start" symbol="GP_SCRIPT_START" template="ScriptExecutionScenarioStart" value="4018" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.ScriptExecutionScenarioEnd.PrincipalEndInfoSuccess)" opcode="win:Stop" symbol="GP_SCRIPT_END_SUCCESS" template="ScriptExecutionScenarioEnd" value="5018" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6018" />
+          <event channel="opnChannel" level="win:Error" message="$(string.ScriptExecutionScenarioEnd.PrincipalEndInfoFailure)" opcode="win:Stop" symbol="GP_SCRIPT_END_FAILURE" template="ScriptExecutionScenarioEnd" value="7018" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.ScriptExecution.ScriptStartInfo)" symbol="INDIVIDUAL_SCRIPT_START" template="ScriptStartInformation" value="4019" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.ScriptExecution.ScriptEndInfo)" symbol="INDIVIDUAL_SCRIPT_END_SUCCESS" template="ScriptEndInformation" value="5019" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6019" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7019" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.InfoOpnEvent.InformationalInfo)" symbol="OPERATIONAL_INFORMATION_MESSAGE" template="InformationalOperationalEvent" value="5320" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.WarningOpnEvent.WarningInfo)" symbol="OPERATIONAL_WARNING_MESSAGE" template="WarningOperationalEvent" value="6320" />
+          <event channel="opnChannel" level="win:Error" message="$(string.ErrorOpnEvent.ErrorInfo)" symbol="OPERATIONAL_ERROR_MESSAGE" template="ErrorOperationalEvent" value="7320" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.InfoOpnEvent.InformationalInfoWithString)" symbol="OPERATIONAL_INFORMATION_MESSAGE_WITH_STRING" template="InformationalOperationalEventWithString" value="5321" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.WarningOpnEvent.WarningInfoWithString)" symbol="OPERATIONAL_WARNING_MESSAGE_WITH_STRING" template="WarningOperationalEventWithString" value="6321" />
+          <event channel="opnChannel" level="win:Error" message="$(string.ErrorOpnEvent.ErrorInfoWithString)" symbol="OPERATIONAL_ERROR_MESSAGE_WITH_STRING" template="ErrorOperationalEventWithString" value="7321" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.GPMachStartupWait.Info)" symbol="GP_MACHINE_STARTUP_WAIT_INFORMATION" template="GPMachineStartupWaitInfo" value="5322" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6322" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7322" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.UnusedPlaceHolder.AssertMessage)" value="5323" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.GPNlaSvcNotStarted.Warning)" symbol="GP_NLASVC_NOT_STARTED_WARNING" template="GPNlaSvcNotStartedWarning" value="6323" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7323" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.WinlogonNotification.Info)" symbol="WINLOGON_NOTIFICATION_INFORMATION" template="WinlogonNotifications" value="5324" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6324" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7324" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.SCMNotification.Info)" symbol="SCM_NOTIFICATION_INFORMATION" template="SCMNotifications" value="5325" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6325" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7325" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.DCDiscovery.Start)" symbol="DC_DISCOVERY_START" value="4326" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.DCDiscovery.EndSuccess)" symbol="DC_DISCOVERY_END_SUCCESS" template="DCDiscoverScenarioEnd" value="5326" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6326" />
+          <event channel="opnChannel" level="win:Error" message="$(string.DCDiscovery.EndFailure)" symbol="DC_DISCOVERY_END_FAILURE" template="DCDiscoverScenarioEnd" value="7326" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.NetworkBandwidth.Info)" symbol="NETWORK_BANDWIDTH_INFO" template="NetworkBandwidthInfo" value="5327" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" value="6327" />
+          <event channel="opnChannel" level="win:Error" message="$(string.UnusedPlaceHolder.AssertMessage)" value="7327" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.ServiceStateExtensionFailureFound)" symbol="CSE_FAILURE_FOUND" template="InformationalOperationalEventWithString" value="6330" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.Info.ServiceConfigUpdateResult)" symbol="SERVICE_CONFIG_UPDATE_RESULT" template="ServiceConfigurationChange" value="5331" />
+          <event channel="opnChannel" level="win:Warning" message="$(string.UnusedPlaceHolder.AssertMessage)" template="ServiceConfigurationChange" value="6331" />
+          <event channel="opnChannel" level="win:Error" message="$(string.Info.ServiceConfigUpdateResult)" symbol="SERVICE_CONFIG_UPDATE_RESULT_ERROR" template="ServiceConfigurationChange" value="7331" />
+          <event channel="System" level="win:Warning" message="$(string.WMIFILTER_NOTFOUND)" notLogged="true" opcode="win:Start" symbol="OLD_gpEvent_WMIFILTER_NOTFOUND" template="tid_GP_AdminEvent_GPO_FAILURE" value="1104" version="0" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.MachineStartupInfo)" notLogged="true" opcode="win:Start" symbol="OLD_MACHINE_STARTUP_POLICY_START" template="OLD_PolicyApplicationScenarioStart" value="4000" version="0" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.MachineEndInfoSuccess)" notLogged="true" opcode="win:Stop" symbol="OLD_MACHINE_STARTUP_POLICY_END_SUCCESS" template="OLD_PolicyApplicationScenarioEnd" value="8000" version="0" />
+          <event channel="opnChannel" level="win:Error" message="$(string.PolicyApplicationScenarioEnd.MachineEndInfoFailure)" notLogged="true" opcode="win:Stop" symbol="OLD_MACHINE_STARTUP_POLICY_END_FAILURE" template="OLD_PolicyApplicationScenarioEnd" value="7000" version="0" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioStart.UserLogonInfo)" notLogged="true" opcode="win:Start" symbol="OLD_USER_LOGON_POLICY_START" template="OLD_PolicyApplicationScenarioStart" value="4001" version="0" />
+          <event channel="opnChannel" level="win:Informational" message="$(string.PolicyApplicationScenarioEnd.UserEndInfoSuccess)" notLogged="true" op

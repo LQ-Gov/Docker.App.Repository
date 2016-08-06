@@ -1,0 +1,30 @@
+�清单资源名的范围的类型。</param>
+      <param name="name">所请求的清单资源的名称（区分大小写）。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 null。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> 参数是空字符串 ("")。</exception>
+      <exception cref="T:System.IO.FileLoadException">发现一个未能加载的文件。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="name" />。</exception>
+      <exception cref="T:System.BadImageFormatException">
+        <paramref name="name" /> 不是有效程序集。</exception>
+      <exception cref="T:System.NotImplementedException">资源长度大于 <see cref="F:System.Int64.MaxValue" />。</exception>
+    </member>
+    <member name="M:System.Reflection.Assembly.GetModule(System.String)">
+      <summary>获取此程序集中的指定模块。</summary>
+      <returns>所请求的模块，若未找到该模块则为 null。</returns>
+      <param name="name">请求的模块的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 参数为 null。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> 参数是空字符串 ("")。</exception>
+      <exception cref="T:System.IO.FileLoadException">发现一个未能加载的文件。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">未找到 <paramref name="name" />。</exception>
+      <exception cref="T:System.BadImageFormatException">
+        <paramref name="name" /> 不是有效程序集。</exception>
+    </member>
+    <member name="M:System.Reflection.Assembly.GetModules">
+      <summary>获取作为此程序集的一部分的所有模块。</summary>
+      <returns>模块的数组。</returns>
+      <exception cref="T:System.IO.FileNotFoundException">要加载的模块未指定文件扩展名。</exception>
+    </me

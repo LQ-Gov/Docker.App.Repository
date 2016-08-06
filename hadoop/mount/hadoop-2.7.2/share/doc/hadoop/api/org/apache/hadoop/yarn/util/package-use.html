@@ -1,0 +1,117 @@
+       argument = "" [String]
+                />
+
+            </deviceFilters>
+        -->
+        <deviceFilters />
+        <!--
+            <globalization
+                requestEncoding = "utf-8" 
+                responseEncoding = "utf-8" 
+                responseHeaderEncoding = "utf-8" 
+                fileEncoding = "" 
+                culture = "" [String]
+                uiCulture = "" [String]
+                enableClientBasedCulture = "false" [true|false]
+                resourceProviderFactoryType = "" [String]
+                enableBestFitResponseEncoding = "false" [true|false]
+            />
+        -->
+        <globalization requestEncoding="utf-8" responseEncoding="utf-8" fileEncoding="" culture="" uiCulture="" enableClientBasedCulture="false" responseHeaderEncoding="utf-8" resourceProviderFactoryType="" enableBestFitResponseEncoding="false" />
+        <!--
+            <hostingEnvironment
+                shutdownTimeout = "30"  [in Seconds][number]
+                idleTimeout = "Infinite"  [in Minutes][number]
+                shadowCopyBinAssemblies = "true" [true|false]
+            />
+        -->
+        <hostingEnvironment idleTimeout="Infinite" shutdownTimeout="30" shadowCopyBinAssemblies="true" />
+        <!--
+            <httpCookies
+                httpOnlyCookies = "false" [true|false]
+                requireSSL = "false" [true|false]
+                domain = "" [String]
+            />
+        -->
+        <httpCookies httpOnlyCookies="false" requireSSL="false" domain="" />
+        <!--
+            <httpRuntime
+                executionTimeout = "110"  [in Seconds][number]
+                maxRequestLength = "4096" [number]
+                requestLengthDiskThreshold = "80" [number]
+                useFullyQualifiedRedirectUrl = "false" [true|false]
+                minFreeThreads = "8" [number]
+                minLocalRequestFreeThreads = "4" [number]
+                appRequestQueueLimit = "5000" [number]
+                enableKernelOutputCache = "true" [true|false]
+                enableVersionHeader = "true" [true|false]
+                apartmentThreading = "false" [true|false]
+                requireRootedSaveAsPath = "true" [true|false]
+                enable = "true" [true|false]
+                sendCacheControlHeader = "true" [true|false]
+                shutdownTimeout = "90"  [in Seconds][number]
+                delayNotificationTimeout = "5"  [in Seconds][number]
+                waitChangeNotification = "0" [number]
+                maxWaitChangeNotification = "0" [number]
+                enableHeaderChecking = "true" [true|false]
+            />
+        -->
+        <httpRuntime executionTimeout="110" maxRequestLength="4096" requestLengthDiskThreshold="80" useFullyQualifiedRedirectUrl="false" minFreeThreads="8" minLocalRequestFreeThreads="4" appRequestQueueLimit="5000" enableKernelOutputCache="true" enableVersionHeader="true" requireRootedSaveAsPath="true" enable="true" shutdownTimeout="90" delayNotificationTimeout="5" waitChangeNotification="0" maxWaitChangeNotification="0" enableHeaderChecking="true" sendCacheControlHeader="true" apartmentThreading="false" />
+        <!--
+            <identity
+                impersonate = "false" [true|false]
+                userName = "" [String]
+                password = "" [String]
+            />
+        -->
+        <identity impersonate="false" userName="" password="" />
+        <!--
+            <machineKey
+                validationKey = "AutoGenerate,IsolateApps" [String]
+                decryptionKey = "AutoGenerate,IsolateApps" [String]
+                decryption = "Auto" [AUTO | DES | 3DES | AES]
+                validation = "SHA1" [MD5 | SHA1 | 3DES | AES]
+            />
+        -->
+        <machineKey validationKey="AutoGenerate,IsolateApps" decryptionKey="AutoGenerate,IsolateApps" validation="SHA1" decryption="Auto" compatibilityMode="Framework20SP1" />
+        <!--
+            <sessionPageState
+                historySize = "9" [number]
+            />
+        -->
+        <sessionPageState historySize="9" />
+        <!--
+            <sessionState
+                mode = "InProc" [Off | InProc | StateServer | SQLServer | Custom]
+                stateConnectionString = "tcpip=loopback:42424" [String]
+                stateNetworkTimeout = "10"  [in Seconds][number]
+                sqlConnectionString = "data source=localhost;Integrated Security=SSPI" [String]
+                sqlCommandTimeout = "30"  [in Seconds][number]
+                customProvider = "" [String]
+                cookieless = "" [UseUri | UseCookies | AutoDetect | UseDeviceProfile]
+                cookieName = "ASP.NET_SessionId" [String]
+                timeout = "20"  [in Minutes][number]
+                allowCustomSqlDatabase = "false" [true|false]
+                regenerateExpiredSessionId = "true" [true|false]
+                partitionResolverType = "" [String]
+                useHostingIdentity = "true" [true|false]
+                sessionIDManagerType = "" [String]
+                >
+                <providers>
+                    <add
+                        name = "" [String, Required, Collection Key]
+                        type = "" [String, Required]
+                    />
+                </providers>
+
+            </sessionState>
+        -->
+        <sessionState mode="InProc" stateConnectionString="tcpip=loopback:42424" stateNetworkTimeout="10" sqlConnectionString="data source=localhost;Integrated Security=SSPI" sqlCommandTimeout="30" customProvider="" cookieless="UseCookies" cookieName="ASP.NET_SessionId" timeout="20" allowCustomSqlDatabase="false" regenerateExpiredSessionId="true" partitionResolverType="" useHostingIdentity="true" sessionIDManagerType="">
+            <providers>
+                <clear />
+            </providers>
+        </sessionState>
+        <!--
+            <trace
+                enabled = "false" [true|false]
+                most

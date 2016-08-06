@@ -1,0 +1,183 @@
+Name="SViewConstraintForeignKeys" Association="Self.ViewConstraintForeignKey" >
+      <End Role="ForeignKey" EntitySet="SViewForeignKeys"/>
+      <End Role="Constraint" EntitySet="SViewConstraints"/>
+    </AssociationSet>
+    <AssociationSet Name="SFromForeignKeyViewColumns" Association="Self.FromForeignKeyViewColumn" >
+      <End Role="ForeignKey" EntitySet="SViewForeignKeys"/>
+      <End Role="Column" EntitySet="SViewColumns"/>
+    </AssociationSet>
+    <AssociationSet Name="SToForeignKeyViewColumns" Association="Self.ToForeignKeyViewColumn" >
+      <End Role="ForeignKey" EntitySet="SViewForeignKeys"/>
+      <End Role="Column" EntitySet="SViewColumns"/>
+    </AssociationSet>
+
+    <AssociationSet Name="FunctionFunctionParameters" Association="Self.FunctionFunctionParameter">
+      <End Role="Function" EntitySet="SFunctions"/>
+      <End Role="Parameter" EntitySet="SFunctionParameters"/>
+    </AssociationSet>
+    <AssociationSet Name="ProcedureProcedureParameters" Association="Self.ProcedureProcedureParameter" >
+      <End Role="Procedure" EntitySet="SProcedures"/>
+      <End Role="Parameter" EntitySet="SProcedureParameters"/>
+    </AssociationSet>
+
+  </EntityContainer>
+
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext" />
+    <Property Name="CatalogName" Type="nvarchar" MaxLength="256" />
+    <Property Name="SchemaName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Name" Nullable="false" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+
+  <EntityType Name="TableColumn" >
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext"/>
+    <Property Name="ParentId" Nullable="false" Type="ntext"/>
+    <Property Name="Name" Nullable="false" Type="nvarchar" MaxLength="256"/>
+    <Property Name="Ordinal" Nullable="false" Type="int" />
+    <Property Name="IsNullable" Nullable="false" Type="bit" />
+    <Property Name="TypeName" Nullable="false" Type="nvarchar" MaxLength="256" />
+    <Property Name="MaxLength" Type="int" />
+    <Property Name="Precision" Type="int" />
+    <Property Name="DateTimePrecision" Type="int" />
+    <Property Name="Scale" Type="int" />
+    <Property Name="CollationCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="CollationSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="CollationName" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetName" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsMultiSet" Nullable="false" Type="bit" />
+    <Property Name="IsIdentity" Nullable="false" Type="bit" />
+    <Property Name="IsStoreGenerated" Nullable="false" Type="bit" />
+    <Property Name="Default" Nullable="true" Type="ntext"/>
+  </EntityType>
+
+  <EntityType Name="View">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext" />
+    <Property Name="CatalogName" Type="nvarchar" MaxLength="256" />
+    <Property Name="SchemaName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Name" Nullable="false" Type="nvarchar" MaxLength="256" />
+    <Property Name="ViewDefinition" Nullable="true" Type="ntext" />
+    <Property Name="IsUpdatable" Nullable="false" Type="bit" />
+  </EntityType>
+
+  <EntityType Name="ViewColumn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext"/>
+    <Property Name="ParentId" Nullable="false" Type="ntext"/>
+    <Property Name="Name" Nullable="false" Type="nvarchar" MaxLength="256"/>
+    <Property Name="Ordinal" Nullable="false" Type="int" />
+    <Property Name="IsNullable" Nullable="false" Type="bit" />
+    <Property Name="TypeName" Nullable="false" Type="nvarchar" MaxLength="256" />
+    <Property Name="MaxLength" Type="int" />
+    <Property Name="Precision" Type="int" />
+    <Property Name="DateTimePrecision" Type="int" />
+    <Property Name="Scale" Type="int" />
+    <Property Name="CollationCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="CollationSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="CollationName" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetName" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsMultiSet" Nullable="false" Type="bit" />
+    <Property Name="IsIdentity" Nullable="false" Type="bit" />
+    <Property Name="IsStoreGenerated" Nullable="false" Type="bit" />
+    <Property Name="Default" Nullable="true" Type="ntext"/>
+  </EntityType>
+
+  <EntityType Name="Function">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext"/>
+    <Property Name="CatalogName" Type="nvarchar" MaxLength="256"/>
+    <Property Name="SchemaName" Type="nvarchar" MaxLength="256"/>
+    <Property Name="Name" Nullable="false" Type="nvarchar" MaxLength="256"/>
+    <Property Name="ReturnTypeName" Type="nvarchar" MaxLength="256" />
+    <Property Name="ReturnMaxLength" Type="int" />
+    <Property Name="ReturnPrecision" Type="int" />
+    <Property Name="ReturnDateTimePrecision" Type="int" />
+    <Property Name="ReturnScale" Type="int" />
+    <Property Name="ReturnCollationCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReturnCollationSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReturnCollationName" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReturnCharacterSetCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReturnCharacterSetSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReturnCharacterSetName" Type="nvarchar" MaxLength="128" />
+    <Property Name="ReturnIsMultiSet" Nullable="false" Type="bit" />
+    <Property Name="IsAggregate" Type="bit" />
+    <Property Name="IsBuiltIn" Type="bit" />
+    <Property Name="IsNiladic" Type="bit" />
+  </EntityType>
+
+  <EntityType Name="Procedure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext"/>
+    <Property Name="CatalogName" Type="nvarchar" MaxLength="256"/>
+    <Property Name="SchemaName" Type="nvarchar" MaxLength="256"/>
+    <Property Name="Name" Nullable="false" Type="nvarchar" MaxLength="256"/>
+  </EntityType>
+
+  <EntityType Name="Parameter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext"/>
+    <Property Name="ParentId" Nullable="false" Type="ntext"/>
+    <Property Name="Name" Nullable="false" Type="ntext" />
+    <Property Name="Ordinal" Nullable="false" Type="int"/>
+    <Property Name="TypeName" Nullable="false" Type="nvarchar" MaxLength="256" />
+    <Property Name="MaxLength" Nullable="true" Type="int" />
+    <Property Name="Precision" Nullable="true" Type="int" />
+    <Property Name="DateTimePrecision" Type="int" />
+    <Property Name="Scale" Nullable="true" Type="int" />
+    <Property Name="CollationCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="CollationSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="CollationName" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetCatalog" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetSchema" Type="nvarchar" MaxLength="128" />
+    <Property Name="CharacterSetName" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsMultiSet" Nullable="false" Type="bit" />
+    <Property Name="Mode" Type="nvarchar" MaxLength="16" />
+    <Property Name="Default" Type="ntext" />
+  </EntityType>
+
+  <EntityType Name="Constraint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext" />
+    <Property Name="ParentId" Nullable="false" Type="ntext" />
+    <Property Name="Name" Nullable="false" MaxLength="256" Type="nvarchar" />
+    <Property Name="IsDeferrable" Nullable="false" Type="bit" />
+    <Property Name="IsInitiallyDeferred" Nullable="false" Type="bit" />
+    <Property Name="ConstraintType" Nullable="false" MaxLength="11" Type="nvarchar" />
+  </EntityType>
+
+  <EntityType Name="CheckConstraint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" Type="ntext" />
+    <Property Name="Expression" Nullable="true" MaxLength="4000" Type="nvarchar" />
+  </EntityType>
+
+  <EntityType Name="ConstraintColumn">
+    <Key>
+      <PropertyRef Name="ConstraintId" />
+      <PropertyRef Name="ColumnId" />
+    </Key>
+    <Property Name="

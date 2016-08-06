@@ -1,0 +1,5 @@
+FROM 8036680/jdk8
+
+RUN wget http://apache.fayea.com/hbase/1.2.2/hbase-1.2.2-bin.tar.gz && \
+    tar zxvf /hbase-1.2.2-bin.tar.gz -C /usr/ && \
+    rm /hbase-1.2.2-bin.tar.gz

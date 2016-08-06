@@ -1,0 +1,134 @@
+*%========== Duplex/PageRegion
+*UIConstraints: *Duplex DuplexTumble *PageRegion A6
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion A6
+*UIConstraints: *Duplex DuplexTumble *PageRegion B6
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion B6
+*UIConstraints: *Duplex DuplexTumble *PageRegion HalfLetter
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion HalfLetter
+*UIConstraints: *Duplex DuplexTumble *PageRegion Env10
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion Env10
+*UIConstraints: *Duplex DuplexTumble *PageRegion EnvMonarch
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion EnvMonarch
+*UIConstraints: *Duplex DuplexTumble *PageRegion EnvC5
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion EnvC5
+*UIConstraints: *Duplex DuplexTumble *PageRegion EnvC6
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion EnvC6
+*UIConstraints: *Duplex DuplexTumble *PageRegion DLEnv
+*UIConstraints: *Duplex DuplexNoTumble *PageRegion DLEnv
+
+*%====== MediaType/Duplex
+*UIConstraints: *MediaType Labels *Duplex DuplexTumble
+*UIConstraints: *MediaType Labels *Duplex DuplexNoTumble
+*UIConstraints: *MediaType OHP *Duplex DuplexTumble
+*UIConstraints: *MediaType OHP *Duplex DuplexNoTumble
+*UIConstraints: *MediaType Thick *Duplex DuplexTumble
+*UIConstraints: *MediaType Thick *Duplex DuplexNoTumble
+*%====== Duplex/MediaType
+*UIConstraints: *Duplex DuplexTumble *MediaType Labels
+*UIConstraints: *Duplex DuplexNoTumble *MediaType Labels
+*UIConstraints: *Duplex DuplexTumble *MediaType OHP
+*UIConstraints: *Duplex DuplexNoTumble *MediaType OHP
+*UIConstraints: *Duplex DuplexTumble *MediaType Thick
+*UIConstraints: *Duplex DuplexNoTumble *MediaType Thick
+
+*%====== RIPaperPolicy/MediaType
+*UIConstraints: *RIPaperPolicy PromptUser *MediaType None
+*%====== MediaType/RIPaperPolicy
+*UIConstraints: *MediaType None *RIPaperPolicy PromptUser
+
+*FreeVM: "2261000"
+
+*Password: "0"
+*ExitServer: "
+  count 0 eq 
+  {false}{true exch startjob}ifelse
+  not {(WARNING: Cannot modify initial VM.) =
+       (Missing or invalid Password.) =
+       (Please contact the author.) = flush quit
+  }if
+"
+*End
+*Reset: "
+  count 0 eq
+  {false}{true exch startjob}ifelse
+  not {(WARNING: Cannot reset printer.) =
+       (Missing or invalid Password.) =
+       (Please contact the author.) = flush quit
+  }if 
+  systemdict /quit get exec
+  (WARNING: Printer Reset Failed.) = flush
+"
+*End
+
+*DefaultResolution: 600dpi
+*?Resolution: "
+  save
+  currentpagedevice /HWResolution get 0 get
+  (       ) cvs print (dpi) = flush
+  restore
+"
+*End
+
+*SuggestedJobTimeout: "0"
+*SuggestedWaitTimeout: "300"
+*PrintPSErrors: True
+*%DeviceAdjustMatrix: "[1 0 0 1 0 0]"
+
+*%========== Media Selection ==========
+*LandscapeOrientation: Minus90
+
+*OpenUI *RIPaperPolicy/Fit to Paper: PickOne
+*OrderDependency: 10 AnySetup *RIPaperPolicy
+*DefaultRIPaperPolicy: PromptUser
+*RIPaperPolicy PromptUser/Prompt User: "
+  <</DeferredMediaSelection true>> setpagedevice
+  <</Policies << /PageSize 2 /MediaType 2 >> >> setpagedevice"
+*End
+*RIPaperPolicy NearestSizeAdjust/Nearest Size and Scale: "
+  <</DeferredMediaSelection false>> setpagedevice
+  <</Policies << /PageSize 3 /MediaType 2 >> >> setpagedevice"
+*End
+*RIPaperPolicy NearestSizeNoAdjust/Nearest Size and Crop: "
+  <</DeferredMediaSelection false>> setpagedevice
+  <</Policies << /PageSize 5 /MediaType 2 >> >> setpagedevice"
+*End
+*CloseUI: *RIPaperPolicy
+
+*OpenUI *PageSize: PickOne
+*OrderDependency: 20 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize A3/A3: "<< 
+  /PageSize [842 1191] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize A4/A4: "<< 
+  /PageSize [595 842] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize A5/A5: "<< 
+  /PageSize [420 595] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize A6/A6: "<< 
+  /PageSize [297 420] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize B4/B4 (JIS): "<< 
+  /PageSize [729 1032] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize B5/B5 (JIS): "<< 
+  /PageSize [516 729] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize B6/B6 (JIS): "<< 
+  /PageSize [363 516] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize Legal/Legal: "<< 
+  /PageSize [612 1008] /ImagingBBox null >> setpagedevice
+  false setedgetoedge"
+*End
+*PageSize Letter/Letter: "<< 
+  /PageSize [612 792] /ImagingBBox null >> setpagedevice
+ 

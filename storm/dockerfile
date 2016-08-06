@@ -1,0 +1,6 @@
+FROM 8036680/jdk8
+
+RUN apt-get update && apt-get install -y python2.7 &&  wget http://apache.fayea.com/storm/apache-storm-1.0.1/apache-storm-1.0.1.tar.gz && \
+    tar zxvf /apache-storm-1.0.1.tar.gz -C /usr/ && \
+    rm /apache-storm-1.0.1.tar.gz && rm -rf /var/lib/apt/lists/* && \
+    ln -s /usr/bin/python2.7 /usr/bin/python

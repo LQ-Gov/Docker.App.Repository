@@ -1,0 +1,275 @@
+，此方法用于在 DeviceSpecific/Choice 构造中的 &lt;Choice&gt; 元素（《.NET Framework 开发人员指南》） 元素之间进行选择。</summary>
+      <returns>
+如果设备具有指定的功能，则为 true；否则为 false。</returns>
+      <param name="delegateName">设备计算方法、属性名或功能集合中的项。 </param>
+      <param name="optionalParameter">可选参数。 </param>
+      <exception cref="T:System.ArgumentOutOfRangeException">未找到作为配置文件中指定的设备筛选器名、<see cref="T:System.Web.Mobile.MobileCapabilities" /> 属性或 <see cref="T:System.Web.Mobile.MobileCapabilities" /> 项集合中的项的 <paramref name="capabilityName" /> 参数。 </exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="delegateName" /> 为 null 或空。</exception>
+    </member>
+    <member name="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeChtml10">
+      <summary>返回要用于 compact HTML 1.0 的源标识符。此字段为只读。</summary>
+    </member>
+    <member name="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeHtml32">
+      <summary>返回要用于 HTML 3.2 的源标识符。此字段为只读。</summary>
+    </member>
+    <member name="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml11">
+      <summary>返回用于 WML 1.1 的源标识符。此字段为只读。</summary>
+    </member>
+    <member name="F:System.Web.Mobile.MobileCapabilities.PreferredRenderingTypeWml12">
+      <summary>返回用于 WML 1.2 的源标识符。此字段为只读。</summary>
+    </member>
+    <member name="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler">
+      <summary>请阅读配置文件的 deviceFilters 元素（ASP.NET 设置架构） 节，该配置文件指定了用于 ASP.NET 移动控件的一组设备筛选器。</summary>
+    </member>
+    <member name="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.#ctor">
+      <summary>初始化 <see cref="T:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler" /> 类的新实例。此方法支持 .NET Framework 基础结构。</summary>
+    </member>
+    <member name="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+      <summary>创建一个由 <paramref name="node" /> 参数指定的 <see cref="T:System.Xml.XmlNode" /> 中所包含的设备筛选器信息组成的字典。如果 <paramref name="parent" /> 属性引用的对象不为 null，则将字典条目追加到父字典中。此方法支持 .NET Framework 基础结构。</summary>
+      <returns>指定的 <paramref name="node" /> 中包含的设备筛选器信息组成的字典。</returns>
+      <param name="parent">配置文件中的父节点；或者，如果创建父节点，则为 null（在 Visual Basic 中为 Nothing）。</param>
+      <param name="context">一个 <see cref="T:System.Web.Configuration.HttpConfigurationContext" /> 对象。</param>
+      <param name="node">要创建的节点。</param>
+      <exception cref="T:System.Configuration.ConfigurationErrorsException">要求的属性不存在或为空，或者 type 属性引用了不存在的 <see cref="T:System.Type" />。</exception>
+    </member>
+    <member name="M:System.Web.Mobile.MobileDeviceCapabilitiesSectionHandler.System#Configuration#IConfigurationSectionHandler#Create(System.Object,System.Object,System.Xml.XmlNode)">
+      <summary>创建一个由 <paramref name="node" /> 参数指定的 <see cref="T:System.Xml.XmlNode" /> 中所包含的设备筛选器信息组成的字典。如果 <paramref name="parent" /> 属性引用的对象不为 null，则将字典条目追加到父字典中。</summary>
+      <returns>指定的 <paramref name="node" /> 中包含的设备筛选器信息组成的字典。</returns>
+      <param name="parent">配置文件中的父节点；或者，如果创建父节点，则为 null（在 Visual Basic 中为 Nothing）。</param>
+      <param name="context">一个 <see cref="T:System.Web.Configuration.HttpConfigurationContext" /> 对象。</param>
+      <param name="node">要创建的节点。</param>
+    </member>
+    <member name="T:System.Web.Mobile.MobileErrorInfo">
+      <summary>提供用于读取有关移动应用程序中所发生异常的信息的结构。</summary>
+    </member>
+    <member name="F:System.Web.Mobile.MobileErrorInfo.ContextKey">
+      <summary>用于从 <see cref="P:System.Web.UI.Page.Context" /> 中检索当前异常信息的键。</summary>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.Description">
+      <summary>返回对异常的描述。</summary>
+      <returns>异常说明。</returns>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.File">
+      <summary>返回发生异常的代码文件的名称。</summary>
+      <returns>发生异常的代码文件的名称。</returns>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.Item(System.String)">
+      <summary>使用给定键从内部字典或哈希表中返回一个字符串值。</summary>
+      <returns>使用给定键从内部字典或哈希表中获取的字符串值。</returns>
+      <param name="key">唯一标识数据存储区中项的字符串。</param>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.LineNumber">
+      <summary>如果已启用跟踪，则将返回代码中发生异常处的行号。</summary>
+      <returns>代码中发生异常处的行号。</returns>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.MiscText">
+      <summary>返回异常的替换文字。</summary>
+      <returns>异常的替换文字。</returns>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.MiscTitle">
+      <summary>返回异常的替换标题。</summary>
+      <returns>异常的替换标题。</returns>
+    </member>
+    <member name="P:System.Web.Mobile.MobileErrorInfo.Type">
+      <summary>返回此异常的 <see cref="T:System.Type" />。</summary>
+      <returns>异常的 <see cref="T:System.Type" />。</returns>
+    </member>
+    <member name="T:System.Web.Mobile.MobileFormsAuthentication">
+      <summary>通过向相应的 URL 追加相应的身份验证信息来支持无 Cookie 设备。</summary>
+    </member>
+    <member name="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean)">
+      <summary>登录后将已验证身份的用户重定向到最初请求的 URL。</summary>
+      <param name="userName">用于 Cookie 身份验证的用户名称。这不需要映射到帐户名称，并将由 URL 身份验证使用。 </param>
+      <param name="createPersistentCookie">指定是否必须发出持久 Cookie（基于会话或比会话更持久的 Cookie）。 </param>
+    </member>
+    <member name="M:System.Web.Mobile.MobileFormsAuthentication.RedirectFromLoginPage(System.String,System.Boolean,System.String)">
+      <summary>登录后将已验证身份的用户重定向到最初请求的 URL。</summary>
+      <param name="userName">用于 Cookie 身份验证的用户名称。这不需要映射到帐户名称，并将由 URL 身份验证使用。 </param>
+      <param name="createPersistentCookie">指定是否必须发出持久 Cookie（基于会话或比会话更持久的 Cookie）。 </param>
+      <param name="strCookiePath">返回用于当前应用程序的已配置 Cookie 路径。 </param>
+    </member>
+    <member name="M:System.Web.Mobile.MobileFormsAuthentication.SignOut">
+      <summary>调用 <see cref="M:System.Web.Security.FormsAuthentication.SignOut" /> 方法并将 <see cref="P:System.Web.UI.MobileControls.IPageAdapter.PersistCookielessData" /> 属性设置为 false。</summary>
+    </member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanCombineFormsInDeck"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanInitiateVoiceCall"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderAfterInputOrSelectElement"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderEmptySelects"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderInputAndSelectElementsTogether"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderMixedSelects"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderOneventAndPrevElementsTogether"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderPostBackCards"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanRenderSetvarZeroWithMultiSelectionList"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.CanSendMail"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.DefaultSubmitButtonLimit"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.GatewayMajorVersion"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.GatewayMinorVersion"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.GatewayVersion"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.HasBackButton"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.HidesRightAlignedMultiselectScrollbars"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.InputType"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.IsColor"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.IsMobileDevice"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.MaximumRenderedPageSize"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.MaximumSoftkeyLabelLength"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.MobileDeviceManufacturer"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.MobileDeviceModel"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.NumberOfSoftkeys"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.PreferredImageMime"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.PreferredRenderingMime"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.PreferredRenderingType"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RendersBreakBeforeWmlSelectAndInput"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RendersBreaksAfterHtmlLists"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RendersBreaksAfterWmlAnchor"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RendersBreaksAfterWmlInput"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RendersWmlDoAcceptsInline"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RendersWmlSelectsAsMenuCards"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiredMetaTagNameValue"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresAttributeColonSubstitution"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresContentTypeMetaTag"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresDBCSCharacter"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresHtmlAdaptiveErrorReporting"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresLeadingPageBreak"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresNoBreakInFormatting"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresOutputOptimization"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresPhoneNumbersAsPlainText"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresSpecialViewStateEncoding"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresUniqueFilePathSuffix"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresUniqueHtmlCheckboxNames"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresUniqueHtmlInputNames"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.RequiresUrlEncodedPostfieldValues"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.ScreenBitDepth"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.ScreenCharactersHeight"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.ScreenCharactersWidth"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.ScreenPixelsHeight"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.ScreenPixelsWidth"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsAccesskeyAttribute"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsBodyColor"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsBold"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsCacheControlMetaTag"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsCss"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsDivAlign"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsDivNoWrap"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsEmptyStringInCookieValue"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsFontColor"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsFontName"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsFontSize"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsImageSubmit"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsIModeSymbols"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsInputIStyle"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsInputMode"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsItalic"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsJPhoneMultiMediaAttributes"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsJPhoneSymbols"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsQueryStringInFormAction"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsRedirectWithCookie"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsSelectMultiple"></member>
+    <member name="P:System.Web.Mobile.MobileCapabilities.SupportsUncheck"></member>
+    <member name="T:System.Web.UI.Design.MobileControls.IMobileDesigner">
+      <summary>向 .NET Framework 和设计宿主（如 Visual Studio 2005）之间的所有移动控件设计器提供接口。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.IMobileDesigner.UpdateRendering">
+      <summary>更新实现 <see cref="T:System.Web.UI.Design.MobileControls.IMobileDesigner" /> 接口的容器控件的设计时呈现。</summary>
+    </member>
+    <member name="T:System.Web.UI.Design.MobileControls.IMobileWebFormServices">
+      <summary>为页设计器组件定义一个接口，以便在设计时从设计器宿主（如 Visual Studio 2005）获取服务。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.IMobileWebFormServices.ClearUndoStack">
+      <summary>在设计时清除设计器宿主的“撤销”缓存中的所有项。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.IMobileWebFormServices.GetCache(System.String,System.Object)">
+      <summary>在设计时从设计器宿主的缓存中获取项。</summary>
+      <returns>设计器宿主的缓存中的对象。</returns>
+      <param name="controlID">容器控件的 ID。</param>
+      <param name="key">缓存项的键。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.IMobileWebFormServices.RefreshPageView">
+      <summary>在设计时刷新设计器宿主中的页。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.IMobileWebFormServices.SetCache(System.String,System.Object,System.Object)">
+      <summary>在设计时将一个对象存储在设计器宿主的缓存中。</summary>
+      <param name="controlID">容器控件的 ID。</param>
+      <param name="key">缓存项的键。</param>
+      <param name="value">要存储在缓存中的项。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.IMobileWebFormServices.UpdateRenderingRecursive(System.Web.UI.Control)">
+      <summary>在设计时以递归方式更新设计宿主中的相关控件及其各个子控件。</summary>
+      <param name="rootControl">用于开始更新的容器控件。</param>
+    </member>
+    <member name="T:System.Web.UI.Design.MobileControls.MobileResource">
+      <summary>支持在设计时为移动控件查找特定于区域性的资源。无法继承此类。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.MobileResource.GetString(System.String)">
+      <summary>返回具有指定名称的字符串资源。</summary>
+      <returns>资源值。</returns>
+      <param name="name">要搜索的资源名称。</param>
+    </member>
+    <member name="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter">
+      <summary>为组件的数据字段属性提供设计时类型转换器。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.#ctor">
+      <summary>实例化 <see cref="T:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <summary>获取一个值，该值指示指定的源类型是否可转换为关联控件属性的类型。</summary>
+      <returns>
+如果 <paramref name="sourceType" /> 是字符串，则为 true；否则为 false。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> 对象。</param>
+      <param name="sourceType">要转换的类型。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <summary>将指定对象转换为字符串。</summary>
+      <returns>包含已转换对象的字符串。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> 对象。</param>
+      <param name="culture">
+        <see cref="T:System.Globalization.CultureInfo" />，它可以用于提供附加的区域性信息。</param>
+      <param name="value">要转换的对象。</param>
+      <exception cref="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)">
+        <paramref name="object" /> 不为 null，也不是字符串。</exception>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+      <summary>如果可以得到关于选定数据源内的字段的信息，则使用提供的上下文获取这些字段的列表。</summary>
+      <returns>包含数据源中可用字段名称列表的 <see cref="T:System.ComponentModel.TypeConverter.StandardValuesCollection" /> 对象。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+      <summary>指示此转换器是否返回一个列表，该列表中包含可使用提供的上下文赋给关联的控件属性的所有可能值。</summary>
+      <returns>false.</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataFieldConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)">
+      <summary>获取一个值，该值指示此对象是否返回可从列表中选取的一组标准值。</summary>
+      <returns>
+如果上下文为非空并且可强制转换为 <see cref="T:System.ComponentModel.IComponent" />，则为 true；否则为 false。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> 对象。</param>
+    </member>
+    <member name="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter">
+      <summary>为表示数据源中数据成员的属性提供一个类型转换器。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.#ctor">
+      <summary>实例化 <see cref="T:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+      <summary>获取一个值，它指示指定的源类型是否可使用指定的上下文和类型转换为关联控件属性的类型。</summary>
+      <returns>
+如果 <paramref name="sourceType" /> 为 <see cref="T:System.String" />，则为 true；否则为 false。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" />。</param>
+      <param name="sourceType">要转换的类型。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+      <summary>使用指定的上下文将指定对象转换为关联控件属性的类型。</summary>
+      <returns>如果 <paramref name="value" /> 不为 null 且包含一个字符串，则为包含 <paramref name="value" /> 的字符串；否则为空字符串 ("")。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" />。</param>
+      <param name="culture">一个 <see cref="T:System.Globalization.CultureInfo" /> 对象，它可以用于提供附加的区域性信息。</param>
+      <param name="value">要转换的值。</param>
+      <exception cref="M:System.ComponentModel.TypeConverter.GetConvertFromException(System.Object)">
+        <paramref name="value" /> 不为 null 且不是字符串。</exception>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)">
+      <summary>使用指定的上下文返回可以分配给控件属性的值的列表。</summary>
+      <returns>一个 <see cref="T:System.ComponentModel.TypeConverter.StandardValuesCollection" /> 对象，它包含数据源中可用数据视图的名称。</returns>
+      <param name="context">表示数据绑定组件或属性所属控件的 <see cref="T:System.ComponentModel.ITypeDescriptorContext" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.UI.Design.MobileControls.Converters.DataMemberConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)">
+      <summary>指示

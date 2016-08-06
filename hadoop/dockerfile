@@ -1,0 +1,5 @@
+FROM 8036680/jdk8
+
+RUN wget http://apache.fayea.com/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz && \
+    tar zxvf /hadoop-2.7.2.tar.gz -C /usr/ && \
+    rm /hadoop-2.7.2.tar.gz

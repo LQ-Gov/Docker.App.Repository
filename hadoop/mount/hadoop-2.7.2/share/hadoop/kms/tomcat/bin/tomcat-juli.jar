@@ -1,0 +1,339 @@
+Frame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearByteKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearByteKeyFrame.InterpolateValueCore(System.Byte,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearColorKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Media.Color" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.ColorKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearColorKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearColorKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearColorKeyFrame.#ctor(System.Windows.Media.Color)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearColorKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearColorKeyFrame.#ctor(System.Windows.Media.Color,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearColorKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearColorKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearColorKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearColorKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearColorKeyFrame.InterpolateValueCore(System.Windows.Media.Color,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearDecimalKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Decimal" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.DecimalKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDecimalKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearDecimalKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDecimalKeyFrame.#ctor(System.Decimal)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearDecimalKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDecimalKeyFrame.#ctor(System.Decimal,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearDecimalKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDecimalKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearDecimalKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearDecimalKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDecimalKeyFrame.InterpolateValueCore(System.Decimal,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearDoubleKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Double" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.DoubleKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDoubleKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearDoubleKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDoubleKeyFrame.#ctor(System.Double)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearDoubleKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDoubleKeyFrame.#ctor(System.Double,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearDoubleKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDoubleKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearDoubleKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearDoubleKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearDoubleKeyFrame.InterpolateValueCore(System.Double,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearInt16KeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Int16" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.Int16KeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt16KeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearInt16KeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt16KeyFrame.#ctor(System.Int16)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearInt16KeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt16KeyFrame.#ctor(System.Int16,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearInt16KeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt16KeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearInt16KeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearInt16KeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt16KeyFrame.InterpolateValueCore(System.Int16,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearInt32KeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Int32" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.Int32KeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt32KeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearInt32KeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt32KeyFrame.#ctor(System.Int32)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearInt32KeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt32KeyFrame.#ctor(System.Int32,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearInt32KeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt32KeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearInt32KeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearInt32KeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt32KeyFrame.InterpolateValueCore(System.Int32,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearInt64KeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Int64" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.Int64KeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt64KeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearInt64KeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt64KeyFrame.#ctor(System.Int64)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearInt64KeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt64KeyFrame.#ctor(System.Int64,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearInt64KeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt64KeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearInt64KeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearInt64KeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearInt64KeyFrame.InterpolateValueCore(System.Int64,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearPoint3DKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Media.Media3D.Point3D" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.Point3DKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPoint3DKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearPoint3DKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPoint3DKeyFrame.#ctor(System.Windows.Media.Media3D.Point3D)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearPoint3DKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPoint3DKeyFrame.#ctor(System.Windows.Media.Media3D.Point3D,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearPoint3DKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPoint3DKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearPoint3DKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearPoint3DKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPoint3DKeyFrame.InterpolateValueCore(System.Windows.Media.Media3D.Point3D,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearPointKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Point" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.PointKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPointKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearPointKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPointKeyFrame.#ctor(System.Windows.Point)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearPointKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPointKeyFrame.#ctor(System.Windows.Point,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearPointKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPointKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearPointKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearPointKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearPointKeyFrame.InterpolateValueCore(System.Windows.Point,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearQuaternionKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Media.Media3D.Quaternion" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.QuaternionKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearQuaternionKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearQuaternionKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearQuaternionKeyFrame.#ctor(System.Windows.Media.Media3D.Quaternion)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearQuaternionKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearQuaternionKeyFrame.#ctor(System.Windows.Media.Media3D.Quaternion,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearQuaternionKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearQuaternionKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearQuaternionKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearQuaternionKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearQuaternionKeyFrame.InterpolateValueCore(System.Windows.Media.Media3D.Quaternion,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="P:System.Windows.Media.Animation.LinearQuaternionKeyFrame.UseShortestPath">
+      <summary>获取或设置一个布尔值，该值指示动画是否使用球状线性内插计算两个位置之间的最短圆弧。这是一个依赖项属性。</summary>
+      <returns>一个布尔值，该值指示动画是否使用球状线性内插计算两个位置之间的最短圆弧。</returns>
+    </member>
+    <member name="F:System.Windows.Media.Animation.LinearQuaternionKeyFrame.UseShortestPathProperty">
+      <summary>标识 <see cref="P:System.Windows.Media.Animation.LinearQuaternionKeyFrame.UseShortestPath" /> 依赖项属性。</summary>
+      <returns>
+        <see cref="P:System.Windows.Media.Animation.LinearQuaternionKeyFrame.UseShortestPath" /> 依赖项属性的标识符。</returns>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearRectKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Rect" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.RectKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRectKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearRectKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRectKeyFrame.#ctor(System.Windows.Rect)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearRectKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRectKeyFrame.#ctor(System.Windows.Rect,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearRectKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRectKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearRectKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearRectKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRectKeyFrame.InterpolateValueCore(System.Windows.Rect,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearRotation3DKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Media.Media3D.Rotation3D" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.Rotation3DKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRotation3DKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearRotation3DKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRotation3DKeyFrame.#ctor(System.Windows.Media.Media3D.Rotation3D)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearRotation3DKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRotation3DKeyFrame.#ctor(System.Windows.Media.Media3D.Rotation3D,System.Windows.Media.Animation.KeyTime)">
+      <summary>使用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearRotation3DKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRotation3DKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearRotation3DKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearRotation3DKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearRotation3DKeyFrame.InterpolateValueCore(System.Windows.Media.Media3D.Rotation3D,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间的值，它指定此关键帧所经过的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearSingleKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Single" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.SingleKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSingleKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearSingleKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSingleKeyFrame.#ctor(System.Single)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearSingleKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSingleKeyFrame.#ctor(System.Single,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearSingleKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSingleKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearSingleKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearSingleKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSingleKeyFrame.InterpolateValueCore(System.Single,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在前一个关键帧的值和当前关键帧的值之间内插。</summary>
+      <returns>指定基值和进度时此关键帧的输出值。</returns>
+      <param name="baseValue">动画处理的起始值。</param>
+      <param name="keyFrameProgress">一个介于 0.0 和 1.0 之间（包括两端）的值，该值指定此关键帧已经过去的时间的百分比。</param>
+    </member>
+    <member name="T:System.Windows.Media.Animation.LinearSizeKeyFrame">
+      <summary>通过使用线性内插，可以在前一个关键帧的 <see cref="T:System.Windows.Size" /> 值及其自己的 <see cref="P:System.Windows.Media.Animation.SizeKeyFrame.Value" /> 之间进行动画处理。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSizeKeyFrame.#ctor">
+      <summary>初始化 <see cref="T:System.Windows.Media.Animation.LinearSizeKeyFrame" /> 类的一个新实例。</summary>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSizeKeyFrame.#ctor(System.Windows.Size)">
+      <summary>用指定的结束值初始化 <see cref="T:System.Windows.Media.Animation.LinearSizeKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSizeKeyFrame.#ctor(System.Windows.Size,System.Windows.Media.Animation.KeyTime)">
+      <summary>用指定的结束值和关键时间初始化 <see cref="T:System.Windows.Media.Animation.LinearSizeKeyFrame" /> 类的新实例。</summary>
+      <param name="value">关键帧的结束值（也称为“目标值”）。</param>
+      <param name="keyTime">关键帧的关键时间。关键时间确定何时达到目标值，该时间也是关键帧结束的时间。</param>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSizeKeyFrame.CreateInstanceCore">
+      <summary>创建 <see cref="T:System.Windows.Media.Animation.LinearSizeKeyFrame" /> 的一个新实例。</summary>
+      <returns>新的 <see cref="T:System.Windows.Media.Animation.LinearSizeKeyFrame" />。</returns>
+    </member>
+    <member name="M:System.Windows.Media.Animation.LinearSizeKeyFrame.InterpolateValueCore(System.Windows.Size,System.Double)">
+      <summary>使用提供的进度增量，以线性方式在�

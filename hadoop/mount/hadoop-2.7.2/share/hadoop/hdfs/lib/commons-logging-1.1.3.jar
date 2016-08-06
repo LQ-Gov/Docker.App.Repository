@@ -1,0 +1,557 @@
+="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotbcProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motbc 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motbc 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotbcProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motbc 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motc2ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motc2 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motc2 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motc2ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motc2 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motc4ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motc4 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motc4 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motc4ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motc4 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotcbProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motcb 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motcb 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotcbProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motcb 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotcfProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motcf 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motcf 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotcfProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motcf 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motd5ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motd5 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motd5 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motd5ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motd5 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motd8ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motd8 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motd8 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motd8ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motd8 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotdcProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motdc 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motdc 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotdcProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motdc 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motf0ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motf0 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motf0 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motf0ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motf0 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motf5ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motf5 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motf5 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motf5ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motf5 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motf6ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motf6 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motf6 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motf6ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motf6 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolae360ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motorolae360 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motorolae360 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolae360ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motorolae360 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolav60gProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motorolav60g 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motorolav60g 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolav60gProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motorolav60g 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolav708aProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motorolav708a 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motorolav708a 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolav708aProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motorolav708a 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolav708ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motorolav708 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motorolav708 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motorolav708ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motorolav708 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motp2kcProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motp2kc 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motp2kc 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motp2kcProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motp2kc 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotpancProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motpanc 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motpanc 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MotpancProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motpanc 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motv200ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Motv200 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Motv200 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Motv200ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Motv200 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillabetaProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozillabeta 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozillabeta 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillabetaProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozillabeta 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillafirebirdProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozillafirebird 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozillafirebird 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillafirebirdProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozillafirebird 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillafirefoxProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozillafirefox 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozillafirefox 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillafirefoxProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozillafirefox 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillagoldProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozillagold 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozillagold 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillagoldProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozillagold 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillaProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozilla 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozilla 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillaProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozilla 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillarvProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozillarv 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozillarv 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MozillarvProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozillarv 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mozillav14plusProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mozillav14plus 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mozillav14plus 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mozillav14plusProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mozillav14plus 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mspie06ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mspie06 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mspie06 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mspie06ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mspie06 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mspie2ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mspie2 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mspie2 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mspie2ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mspie2 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MspieProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mspie 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mspie 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MspieProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mspie 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mypalm1ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mypalm1 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mypalm1 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Mypalm1ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mypalm1 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MypalmProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Mypalm 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Mypalm 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.MypalmProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Mypalm 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.N400ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 N400 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 N400 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.N400ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 N400 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.NetfrontProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netfront 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netfront 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.NetfrontProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netfront 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape3ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netscape3 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netscape3 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape3ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netscape3 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape4ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netscape4 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netscape4 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape4ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netscape4 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape5ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netscape5 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netscape5 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape5ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netscape5 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape6to9betaProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netscape6to9beta 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netscape6to9beta 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape6to9betaProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netscape6to9beta 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape6to9ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netscape6to9 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netscape6to9 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Netscape6to9ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netscape6to9 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.NetscapebetaProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Netscapebeta 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Netscapebeta 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.NetscapebetaProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Netscapebeta 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nk00ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nk00 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nk00 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nk00ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nk00 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3330ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3330 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3330 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3330ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3330 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3560ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3560 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3560 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3560ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3560 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3590ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3590 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3590 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3590ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3590 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3590v1ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3590v1 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3590v1 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3590v1ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3590v1 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3595ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3595 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3595 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3595ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3595 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3650p12plusProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3650p12plus 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3650p12plus 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3650p12plusProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3650p12plus 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3650ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当前请求的 Nokia3650 浏览器的功能。</summary>
+      <param name="ignoreApplicationBrowsers">
+如果忽略应用程序级别浏览器定义文件中 Nokia3650 浏览器的定义，则为 true；否则为 false。</param>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia3650ProcessGateways(System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示处理当前请求的 Nokia3650 网关的功能。</summary>
+      <param name="headers">包含在当前请求中的标头的集合。</param>
+      <param name="browserCaps">要初始化的 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象。</param>
+    </member>
+    <member name="M:System.Web.Configuration.BrowserCapabilitiesFactory.Nokia5100ProcessBrowsers(System.Boolean,System.Collections.Specialized.NameValueCollection,System.Web.HttpBrowserCapabilities)">
+      <summary>初始化一个 <see cref="T:System.Web.HttpBrowserCapabilities" /> 对象，该对象表示发出当�

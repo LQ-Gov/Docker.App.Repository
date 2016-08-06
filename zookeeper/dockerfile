@@ -1,0 +1,10 @@
+FROM 8036680/jdk8
+RUN wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz && \
+    tar zxvf zookeeper-3.5.1-alpha.tar.gz -C /usr/lib/ && \
+    rm /zookeeper-3.5.1-alpha.tar.gz
+  
+    
+#EXPOSE 2181 
+#EXPOSE 2888
+#EXPOSE 3888
+

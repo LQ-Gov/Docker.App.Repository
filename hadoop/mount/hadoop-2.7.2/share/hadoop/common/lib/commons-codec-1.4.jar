@@ -1,0 +1,1731 @@
+ailable stations (always 253)
+    UCHAR uchAdapterConfig;         // adapter configuration flags
+    UCHAR auchReserved1[10];        // microcode level
+    ULONG ulReserved1;
+    ULONG ulReserved2;
+    ULONG ulMaxFrameLength;         // maximum frame length (only in Windows/Nt)
+    USHORT usLastNetworkStatus;
+    USHORT usAdapterType;           // THIS BYTE IS NOT USED IN DOS DLC !!!
+} LLC_DIR_STATUS_PARMS, *PLLC_DIR_STATUS_PARMS;
+
+
+#define LLC_OPTION_READ_STATION 0
+#define LLC_OPTION_READ_SAP     1
+#define LLC_OPTION_READ_ALL     2
+
+#define LLC_EVENT_SYSTEM_ACTION         0x0040
+#define LLC_EVENT_NETWORK_STATUS        0x0020
+#define LLC_EVENT_CRITICAL_EXCEPTION    0x0010
+#define LLC_EVENT_STATUS_CHANGE         0x0008
+#define LLC_EVENT_RECEIVE_DATA          0x0004
+#define LLC_EVENT_TRANSMIT_COMPLETION   0x0002
+#define LLC_EVENT_COMMAND_COMPLETION    0x0001
+#define LLC_READ_ALL_EVENTS             0x007F
+
+//
+// LLC_STATUS_CHANGE indications
+// The returned status value may be an inclusive-OR of several flags
+//
+
+#define LLC_INDICATE_LINK_LOST              0x8000
+#define LLC_INDICATE_DM_DISC_RECEIVED       0x4000
+#define LLC_INDICATE_FRMR_RECEIVED          0x2000
+#define LLC_INDICATE_FRMR_SENT              0x1000
+#define LLC_INDICATE_RESET                  0x0800
+#define LLC_INDICATE_CONNECT_REQUEST        0x0400
+#define LLC_INDICATE_REMOTE_BUSY            0x0200
+#define LLC_INDICATE_REMOTE_READY           0x0100
+#define LLC_INDICATE_TI_TIMER_EXPIRED       0x0080
+#define LLC_INDICATE_DLC_COUNTER_OVERFLOW   0x0040
+#define LLC_INDICATE_ACCESS_PRTY_LOWERED    0x0020
+#define LLC_INDICATE_LOCAL_STATION_BUSY     0x0001
+
+typedef struct {
+    USHORT usStationId;
+    UCHAR uchOptionIndicator;
+    UCHAR uchEventSet;
+    UCHAR uchEvent;
+    UCHAR uchCriticalSubset;
+    ULONG ulNotificationFlag;
+
+    union {
+
+        struct {
+            USHORT usCcbCount;
+            PLLC_CCB pCcbCompletionList;
+            USHORT usBufferCount;
+            PLLC_BUFFER pFirstBuffer;
+            USHORT usReceivedFrameCount;
+            PLLC_BUFFER pReceivedFrame;
+            USHORT usEventErrorCode;
+            USHORT usEventErrorData[3];
+        } Event;
+
+        struct {
+            USHORT usStationId;
+            USHORT usDlcStatusCode;
+            UCHAR uchFrmrData[5];
+            UCHAR uchAccessPritority;
+            UCHAR uchRemoteNodeAddress[6];
+            UCHAR uchRemoteSap;
+            UCHAR uchReserved;
+            USHORT usUserStatusValue;
+        } Status;
+
+    } Type;
+
+} LLC_READ_PARMS, *PLLC_READ_PARMS;
+
+//
+// This data structure gives the best performance in Windows/Nt: The DLC driver
+// must copy the CCB and the parameter table. If the driver knows that the
+// parameter table is concatenated to the CCB, it can copy both structures at
+// once. NOTE: The pointer to the parameter table MUST still be present in the
+// CCB
+//
+
+typedef struct {
+    LLC_CCB Ccb;
+    LLC_READ_PARMS Parms;
+} LLC_READ_COMMAND, *PLLC_READ_COMMAND;
+
+//
+// New receive types for direct stations, these types are ignored if the direct
+// station was opened with a specific ethernet type
+//
+
+#define LLC_DIR_RCV_ALL_TR_FRAMES       0
+#define LLC_DIR_RCV_ALL_MAC_FRAMES      1
+#define LLC_DIR_RCV_ALL_8022_FRAMES     2
+#define LLC_DIR_RCV_ALL_FRAMES          4
+#define LLC_DIR_RCV_ALL_ETHERNET_TYPES  5
+
+#define LLC_CONTIGUOUS_MAC      0x80
+#define LLC_CONTIGUOUS_DATA     0x40
+#define LLC_NOT_CONTIGUOUS_DATA 0x00
+
+//
+// LLC_BREAK (0x20) is not supported by Windows/Nt
+//
+
+#define LLC_RCV_READ_INDIVIDUAL_FRAMES  0
+#define LLC_RCV_CHAIN_FRAMES_ON_LINK    1
+#define LLC_RCV_CHAIN_FRAMES_ON_SAP     2
+
+typedef struct {
+    USHORT usStationId;             // SAP, link station or direct id
+    USHORT usUserLength;            // length of user data in buffer header
+    ULONG ulReceiveFlag;            // the received data handler
+    PLLC_BUFFER pFirstBuffer;       // first buffer in the pool
+    UCHAR uchOptions;               // defines how the frame is received
+    UCHAR auchReserved1[3];
+    UCHAR uchRcvReadOption;         // defines if rcv frames are chained
+} LLC_RECEIVE_PARMS, *PLLC_RECEIVE_PARMS;
+
+#define LLC_CHAIN_XMIT_COMMANDS_ON_LINK 0
+#define LLC_COMPLETE_SINGLE_XMIT_FRAME  1
+#define LLC_CHAIN_XMIT_COMMANDS_ON_SAP  2
+
+typedef struct {
+    USHORT usStationId;             // SAP, link station or direct id
+    UCHAR uchTransmitFs;            // token-ring frame status
+    UCHAR uchRemoteSap;             // remote destination SAP
+    PLLC_XMIT_BUFFER pXmitQueue1;   // first link list of frame segments
+    PLLC_XMIT_BUFFER pXmitQueue2;   // another segment list returuned to pool
+    USHORT cbBuffer1;               // length of buffer 1
+    USHORT cbBuffer2;               // length of buffer 2
+    PVOID pBuffer1;                 // yet another segment
+    PVOID pBuffer2;                 // this is the last segment of frame
+    UCHAR uchXmitReadOption;        // defines completion event for READ
+} LLC_TRANSMIT_PARMS,  *PLLC_TRANSMIT_PARMS;
+
+#define LLC_FIRST_DATA_SEGMENT  0x01
+#define LLC_NEXT_DATA_SEGMENT   0x02
+
+typedef struct {
+    UCHAR eSegmentType;             // defines if first or next segment of frame
+    UCHAR boolFreeBuffer;           // if set, this buffer is released to pool
+    USHORT cbBuffer;                // length of this buffer
+    PVOID pBuffer;
+} LLC_TRANSMIT_DESCRIPTOR, *PLLC_TRANSMIT_DESCRIPTOR;
+
+//
+// The frames types returned in the first receive buffer or used with the
+// TRANSMIT_FRAMES command.  A direct station may also send only ethernet
+// frames. The ethernet types are only for transmit. Types 0x0019 - 0x05DC
+// are reserved
+//
+
+enum _LLC_FRAME_TYPES {                     // Purpose:
+    LLC_DIRECT_TRANSMIT         = 0x0000,   // transmit
+    LLC_DIRECT_MAC              = 0x0002,   // receive
+    LLC_I_FRAME                 = 0x0004,   // receive & transmit
+    LLC_UI_FRAME                = 0x0006,   // receive & transmit
+    LLC_XID_COMMAND_POLL        = 0x0008,   // receive & transmit
+    LLC_XID_COMMAND_NOT_POLL    = 0x000A,   // receive & transmit
+    LLC_XID_RESPONSE_FINAL      = 0x000C,   // receive & transmit
+    LLC_XID_RESPONSE_NOT_FINAL  = 0x000E,   // receive & transmit
+    LLC_TEST_RESPONSE_FINAL     = 0x0010,   // receive & transmit
+    LLC_TEST_RESPONSE_NOT_FINAL = 0x0012,   // receive & transmit
+    LLC_DIRECT_8022             = 0x0014,   // receive (direct station)
+    LLC_TEST_COMMAND_POLL       = 0x0016,   // transmit
+    LLC_DIRECT_ETHERNET_TYPE    = 0x0018,   // receive (direct station)
+    LLC_LAST_FRAME_TYPE         = 0x001a,   // reserved
+    LLC_FIRST_ETHERNET_TYPE     = 0x05DD    // transmit (>)
+};
+
+typedef struct {
+    LLC_CCB Ccb;                    // use this as transmit CCB
+    USHORT usStationId;
+    USHORT usFrameType;             // DLC frame or ethernet type
+    UCHAR uchRemoteSap;             // used with UI, TEST, XID frames
+    UCHAR uchXmitReadOption;
+    UCHAR Reserved2[2];
+    ULONG cXmitBufferCount;
+    LLC_TRANSMIT_DESCRIPTOR aXmitBuffer[1];
+} LLC_TRANSMIT2_COMMAND, *PLLC_TRANSMIT2_COMMAND;
+
+//
+// LLC_TRANSMIT2_VAR_PARMS - this macro allocates space for variable length
+// descriptor array, eg: LLC_TRANSMIT2_VAR_PARMS(8) TransmitParms;
+//
+
+#define LLC_TRANSMIT2_VAR_PARMS(a)\
+struct {\
+    LLC_CCB Ccb;\
+    USHORT usStationId;\
+    USHORT usFrameType;\
+    UCHAR uchRemoteSap;\
+    UCHAR uchXmitReadOption;\
+    UCHAR uchReserved2[2];\
+    ULONG cXmitBufferCount;\
+    LLC_TRANSMIT_DESCRIPTOR XmitBuffer[(a)];\
+}
+
+//
+// LLC_PARMS - All CCB parameter tables can be referred to using this union
+//
+
+union _LLC_PARMS {
+    LLC_BUFFER_FREE_PARMS BufferFree;
+    LLC_BUFFER_GET_PARMS BufferGet;
+    LLC_DLC_CONNECT_PARMS DlcConnectStation;
+    LLC_DLC_MODIFY_PARMS DlcModify;
+    LLC_DLC_OPEN_SAP_PARMS DlcOpenSap;
+    LLC_DLC_OPEN_STATION_PARMS DlcOpenStation;
+    LLC_DLC_REALLOCATE_PARMS DlcReallocate;
+    LLC_DLC_SET_THRESHOLD_PARMS DlcSetThreshold;
+    LLC_DLC_STATISTICS_PARMS DlcStatistics;
+    LLC_DIR_INITIALIZE_PARMS DirInitialize;
+    LLC_DIR_OPEN_ADAPTER_PARMS DirOpenAdapter;
+    LLC_DIR_OPEN_DIRECT_PARMS DirOpenDirect;
+    LLC_DIR_READ_LOG_PARMS DirReadLog;
+    LLC_DIR_SET_EFLAG_PARMS DirSetEventFlag;
+    LLC_DIR_STATUS_PARMS DirStatus;
+    LLC_READ_PARMS Read;
+    LLC_RECEIVE_PARMS Receive;
+    LLC_TRANSMIT_PARMS Transmit;
+    LLC_TRANSMIT2_COMMAND Transmit2;
+    LLC_TRACE_INITIALIZE_PARMS TraceInitialize;
+};
+
+//
+// LLC_STATUS - enumerates the return codes which appear in the CCB uchDlcStatus
+// field
+//
+
+typedef enum _LLC_STATUS {
+    LLC_STATUS_SUCCESS                      = 0x00,
+    LLC_STATUS_INVALID_COMMAND              = 0x01,
+    LLC_STATUS_DUPLICATE_COMMAND            = 0x02,
+    LLC_STATUS_ADAPTER_OPEN                 = 0x03,
+    LLC_STATUS_ADAPTER_CLOSED               = 0x04,
+    LLC_STATUS_PARAMETER_MISSING            = 0x05,
+    LLC_STATUS_INVALID_OPTION               = 0x06,
+    LLC_STATUS_COMMAND_CANCELLED_FAILURE    = 0x07,
+    LLC_STATUS_ACCESS_DENIED                = 0x08,   // not used in Windows/Nt
+    LLC_STATUS_ADAPTER_NOT_INITIALIZED      = 0x09,   // not used in Windows/Nt
+    LLC_STATUS_CANCELLED_BY_USER            = 0x0A,
+    LLC_STATUS_COMMAND_CANCELLED_CLOSED     = 0x0B,   // not used in Windows/Nt
+    LLC_STATUS_SUCCESS_NOT_OPEN             = 0x0C,
+    LLC_STATUS_TIMER_ERROR                  = 0x11,
+    LLC_STATUS_NO_MEMORY                    = 0x12,
+    LLC_STATUS_INVALID_LOG_ID               = 0x13,   // not used in Windows/Nt
+    LLC_STATUS_LOST_LOG_DATA                = 0x15,
+    LLC_STATUS_BUFFER_SIZE_EXCEEDED         = 0x16,
+    LLC_STATUS_INVALID_BUFFER_LENGTH        = 0x18,
+    LLC_STATUS_INADEQUATE_BUFFERS           = 0x19,
+    LLC_STATUS_USER_LENGTH_TOO_LARGE        = 0x1A,
+    LLC_STATUS_INVALID_PARAMETER_TABLE      = 0x1B,
+    LLC_STATUS_INVALID_POINTER_IN_CCB       = 0x1C,
+    LLC_STATUS_INVALID_ADAPTER              = 0x1D,
+    LLC_STATUS_LOST_DATA_NO_BUFFERS         = 0x20,
+    LLC_STATUS_LOST_DATA_INADEQUATE_SPACE   = 0x21,
+    LLC_STATUS_TRANSMIT_ERROR_FS            = 0x22,
+    LLC_STATUS_TRANSMIT_ERROR               = 0x23,
+    LLC_STATUS_UNAUTHORIZED_MAC             = 0x24,   // not used in Windows/Nt
+    LLC_STATUS_MAX_COMMANDS_EXCEEDED        = 0x25,   // not used in Windows/Nt
+    LLC_STATUS_LINK_NOT_TRANSMITTING        = 0x27,
+    LLC_STATUS_INVALID_FRAME_LENGTH         = 0x28,
+    LLC_STATUS_INADEQUATE_RECEIVE           = 0x30,   // not used in Windows/Nt
+    LLC_STATUS_INVALID_NODE_ADDRESS         = 0x32,
+    LLC_STATUS_INVALID_RCV_BUFFER_LENGTH    = 0x33,
+    LLC_STATUS_INVALID_XMIT_BUFFER_LENGTH   = 0x34,
+    LLC_STATUS_INVALID_STATION_ID           = 0x40,
+    LLC_STATUS_LINK_PROTOCOL_ERROR          = 0x41,
+    LLC_STATUS_PARMETERS_EXCEEDED_MAX       = 0x42,
+    LLC_STATUS_INVALID_SAP_VALUE            = 0x43,
+    LLC_STATUS_INVALID_ROUTING_INFO         = 0x44,
+    LLC_STATUS_RESOURCES_NOT_AVAILABLE      = 0x46,   // not used in Windows/Nt
+    LLC_STATUS_LINK_STATIONS_OPEN           = 0x47,
+    LLC_STATUS_INCOMPATIBLE_COMMANDS        = 0x4A,
+    LLC_STATUS_OUTSTANDING_COMMANDS         = 0x4C,   // not used in Windows/Nt
+    LLC_STATUS_CONNECT_FAILED               = 0x4D,
+    LLC_STATUS_INVALID_REMOTE_ADDRESS       = 0x4F,
+    LLC_STATUS_CCB_POINTER_FIELD            = 0x50,
+    LLC_STATUS_INVALID_APPLICATION_ID       = 0x52,   // not used in Windows/Nt
+    LLC_STATUS_NO_SYSTEM_PROCESS            = 0x56,   // not used in Windows/Nt
+    LLC_STATUS_INADEQUATE_LINKS             = 0x57,
+    LLC_STATUS_INVALID_PARAMETER_1          = 0x58,
+    LLC_STATUS_DIRECT_STATIONS_NOT_ASSIGNED = 0x5C,
+    LLC_STATUS_DEVICE_DRIVER_NOT_INSTALLED  = 0x5d,
+    LLC_STATUS_ADAPTER_NOT_INSTALLED        = 0x5e,
+    LLC_STATUS_CHAINED_DIFFERENT_ADAPTERS   = 0x5f,
+    LLC_STATUS_INIT_COMMAND_STARTED         = 0x60,
+    LLC_STATUS_TOO_MANY_USERS               = 0x61,   // not used in Windows/Nt
+    LLC_STATUS_CANCELLED_BY_SYSTEM_ACTION   = 0x62,
+    LLC_STATUS_DIR_STATIONS_NOT_AVAILABLE   = 0x63,   // not used in Windows/Nt
+    LLC_STATUS_NO_GDT_SELECTORS             = 0x65,
+    LLC_STATUS_MEMORY_LOCK_FAILED           = 0x69,
+
+    //
+    // New NT DLC specific error codes begin from 0x80
+    // These error codes are for new Windows/Nt DLC apps.
+    //
+
+    LLC_STATUS_INVALID_BUFFER_ADDRESS       = 0x80,
+    LLC_STATUS_BUFFER_ALREADY_RELEASED      = 0x81,
+    LLC_STATUS_BIND_ERROR                   = 0xA0,   // not used in Windows/Nt
+    LLC_STATUS_INVALID_VERSION              = 0xA1,
+    LLC_STATUS_NT_ERROR_STATUS              = 0xA2,
+    LLC_STATUS_PENDING                      = 0xFF
+} LLC_STATUS;
+
+#define LLC_STATUS_MAX_ERROR 0xFF
+
+//
+// ACSLAN_STATUS - status codes which are returned from AcsLan
+//
+
+typedef enum {
+    ACSLAN_STATUS_COMMAND_ACCEPTED = 0,
+    ACSLAN_STATUS_INVALID_CCB_POINTER = 1,
+    ACSLAN_STATUS_CCB_IN_ERROR = 2,
+    ACSLAN_STATUS_CHAINED_CCB_IN_ERROR = 3,
+    ACSLAN_STATUS_SYSTEM_ERROR = 4,
+    ACSLAN_STATUS_SYSTEM_STATUS = 5,
+    ACSLAN_STATUS_INVALID_COMMAND = 6
+} ACSLAN_STATUS;
+
+//
+// prototypes
+//
+
+ACSLAN_STATUS
+APIENTRY
+AcsLan(
+    IN OUT PLLC_CCB pCcb,
+    OUT PLLC_CCB* ppBadCcb
+    );
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // _DLCAPI_
+                                                                                                                                                                                                                                                                                                                                              3/Ì ?Õ2/8Ì?Õ9/Ì99/10#"&'&##53254#"563 3255!}ÒŒæ◊+ π†í∆≤ÜÜ¥ëøÓjz#hBçΩÈî¨É√tg<Ÿ4˛Î¿-	MZÅ¨…  ˛}ñ≤  S@a		ëì∏ˇ@ù~ ! 9/Õ23/Õ33/Ì/9/ ?Ì2/8Ì?Ì3/9/Ì910!#4&##53 54#"6323ñ˛„Ù†ç∏∞·°∑∏ﬂÎìàó©Õ˛}ÉúaiÚ∫™fT√ßÉ∑ ¥áÜ  ˛ã›  U@ûó∏ˇ@É 9/Õ23/ÌÕ/9/Õ9/ ?Õ2/8?Ì3/9/Ì910!#4##53254#"563 3›˛ˇﬁÕ¨í∆≤ÜÜ¥ëøÓ}á§˛ãu
+†√tg<Ÿ4˛Î¿-ÄfB  ˇÁRö  D@%îîíí~ ~ 	Ä/Ì39/9Ì/Ì/ ?Ì?Ì2/8Ì?Ì9/10#"&5!#"'53265!325!R˘‘›ˆ˛VÃ¡9)&I@NAâD¨Œ˜ı Á˝aÔ˛Ô¸wé¨¸LbÆ¿   ˇÁë   E@$óóóÑ É	/Õ39/9Ì/Ì/ ?Ì?Õ9/8Ì3/Ì9/10#"&5!#"'5325!3255!ëÒÕ…˙˛«ºµ8|êH;AçæËË∂ú˛á—Â
+›
+ÔB˝âM[¨…   §ˇÁŸö  D@%ë@
+ë"0
+í~ ~
+	~
+/Ì29/9Ì/Ì3 ???Ì?+ /MÌ3/10#" 55!!!!!325!Ÿ˘‘“˛ˇ˝Æ˛ΩCRDNAäC¨Œ˜º†˝∫ö˝∆:¸LbÆ¿  ÖˇÁ§   B@#ò@
+ò"0
+Ñ É
+	Ñ
+/Ì29/9Ì/Ì3 ?3?Õ?+ /MÌ9/10#"&55!!!!!3255!§ÒŒ…˘˛û˛ƒ<b=H;BçΩÈË∂'˛T ˛Ö{˝âM[¨…   NˇÁÀ≤  B∂î	∏ˇ@íí	  }}/Ì9/Ì93// ?Ì?Ì9/89/Ì10 !   ! &#"3267!!À˛Ö˛À˛≥˛Ä¨d«Ëﬂ–¯…∏ì±
+˛ÖŸñ˛…˛àÇMO≠X˛À˛˝ﬁ‡Ìùí   HˇÁL  K@
+û	ó∏ˇ@œﬂ@Hó	  ÜÖ/Ì9/Ì93// ?Ì2+]/8?Ì9/Ì10 #" 54 !2&#"3265!5!L˛ËÍ„˛·-¥û£îâ†ÉwTf˛Ì8œ◊˛Ô¯¯18ˇ Z¶ïîßgO¬  ˇÁVö  /@íì	 ~~/Ì39/Ì9// ?Ì2?Ì9/10#" 5!!!325!V˘‘“˛ˇ˛it˛gNAâD¨Œ˜ºÌ˛˘˝LbÆ¿  ˇÁ¥   4@ï	 ÉÑ /]Ì39/Ì9// ?Ì2?Õ9/10#"&5!5!!3255!¥ÒÕ…˙˛Ïd˛ÓH;AçæËË∂ã˛yM[¨… √òç    -@€O
+S  ……/Ì99/Ì9// /˝99÷]Ì10!5!"&54632!"&54632}˝∂J^4DC55DB˛;5DE45DB·¨˛6=./<<//<>-/<<//<   √¡&    P¥Ä∏ˇ¿@!	HS…
+…
+Ω    Ωπˇ /8Ì3/8Ì9/Ì/Õ9/Ì /˝99÷+Õ2910#37"&54632!"&54632¡Ó¯ÎÃúú+4DC55DB˛;5DE45DB&˛ªEºº˝ù=./<<//<>-/<<//<  ﬁ√“$    A@ 0 
+S…∏ˇ@   …/Ì3/8Õ99/8Õ/Ì ?˝99÷Õ]10#!"&54632!"&54632˚‰˛«c7BD54ED˛7BD55CD·C˝ü<//<</-><//<</.= 3√}ç   (@€ 0
+S  …9/Ì32// /Ì‘]Ì10!5!"&54632}˝∂J˛€5DE45DB·¨˛6>-/<<//<  ˜æπ°   2@€
+O  ƒƒ/Ì93/Ì9// /3›]299÷Ì10!5!#"'&#"#4632325}˝∂J<—<Y`!LèofGPU&Lı¨˜Â"%Nnz#%L  ˇl˙>Â  <@
+
+@
+H 	
+∏ˇ¿∂
+H
+ //’+Õ’+Õ9/Õ99 /33›2Õ10#'##'##'>m</ƒ/</ƒ/<mÂÎeeeeÎ  ˇâ ›¢   S@
+
+/∏ˇ@o ?/Õ93]/Õ33/ /]Õ2/8Õ/]Õ393933810#5#/*++
+
+Copyright (c) 1990-1997,  Microsoft Corporation  All rights reserved.
+
+Module Name:
+
+    dlgs.h
+
+Abstract:
+
+    This module contains the UI dialog header information.
+
+--*/
+
+
+#ifndef _DLGSH_INCLUDED_
+#define _DLGSH_INCLUDED_
+
+
+//
+//  Constant Declarations.
+//
+
+#define ctlFirst    0x0400
+#define ctlLast     0x04ff
+
+//
+//  Push buttons.
+//
+#define psh1        0x0400
+#define psh2        0x0401
+#define psh3        0x0402
+#define psh4        0x0403
+#define psh5        0x0404
+#define psh6        0x0405
+#define psh7        0x0406
+#define psh8        0x0407
+#define psh9        0x0408
+#define psh10       0x0409
+#define psh11       0x040a
+#define psh12       0x040b
+#define psh13       0x040c
+#define psh14       0x040d
+#define psh15       0x040e
+#define pshHelp     psh15
+#define psh16       0x040f
+
+//
+//  Checkboxes.
+//
+#define chx1        0x0410
+#define chx2        0x0411
+#define chx3        0x0412
+#define chx4        0x0413
+#define chx5        0x0414
+#define chx6        0x0415
+#define chx7        0x0416
+#define chx8        0x0417
+#define chx9        0x0418
+#define chx10       0x0419
+#define chx11       0x041a
+#define chx12       0x041b
+#define chx13       0x041c
+#define chx14       0x041d
+#define chx15       0x041e
+#define chx16       0x041f
+
+//
+//  Radio buttons.
+//
+#define rad1        0x0420
+#define rad2        0x0421
+#define rad3        0x0422
+#define rad4        0x0423
+#define rad5        0x0424
+#define rad6        0x0425
+#define rad7        0x0426
+#define rad8        0x0427
+#define rad9        0x0428
+#define rad10       0x0429
+#define rad11       0x042a
+#define rad12       0x042b
+#define rad13       0x042c
+#define rad14       0x042d
+#define rad15       0x042e
+#define rad16       0x042f
+
+//
+//  Groups, frames, rectangles, and icons.
+//
+#define grp1        0x0430
+#define grp2        0x0431
+#define grp3        0x0432
+#define grp4        0x0433
+#define frm1        0x0434
+#define frm2        0x0435
+#define frm3        0x0436
+#define frm4        0x0437
+#define rct1        0x0438
+#define rct2        0x0439
+#define rct3        0x043a
+#define rct4        0x043b
+#define ico1        0x043c
+#define ico2        0x043d
+#define ico3        0x043e
+#define ico4        0x043f
+
+//
+//  Static text.
+//
+#define stc1        0x0440
+#define stc2        0x0441
+#define stc3        0x0442
+#define stc4        0x0443
+#define stc5        0x0444
+#define stc6        0x0445
+#define stc7        0x0446
+#define stc8        0x0447
+#define stc9        0x0448
+#define stc10       0x0449
+#define stc11       0x044a
+#define stc12       0x044b
+#define stc13       0x044c
+#define stc14       0x044d
+#define stc15       0x044e
+#define stc16       0x044f
+#define stc17       0x0450
+#define stc18       0x0451
+#define stc19       0x0452
+#define stc20       0x0453
+#define stc21       0x0454
+#define stc22       0x0455
+#define stc23       0x0456
+#define stc24       0x0457
+#define stc25       0x0458
+#define stc26       0x0459
+#define stc27       0x045a
+#define stc28       0x045b
+#define stc29       0x045c
+#define stc30       0x045d
+#define stc31       0x045e
+#define stc32       0x045f
+
+//
+//  Listboxes.
+//
+#define lst1        0x0460
+#define lst2        0x0461
+#define lst3        0x0462
+#define lst4        0x0463
+#define lst5        0x0464
+#define lst6        0x0465
+#define lst7        0x0466
+#define lst8        0x0467
+#define lst9        0x0468
+#define lst10       0x0469
+#define lst11       0x046a
+#define lst12       0x046b
+#define lst13       0x046c
+#define lst14       0x046d
+#define lst15       0x046e
+#define lst16       0x046f
+
+//
+//  Combo boxes.
+//
+#define cmb1        0x0470
+#define cmb2        0x0471
+#define cmb3        0x0472
+#define cmb4        0x0473
+#define cmb5        0x0474
+#define cmb6        0x0475
+#define cmb7        0x0476
+#define cmb8        0x0477
+#define cmb9        0x0478
+#define cmb10       0x0479
+#define cmb11       0x047a
+#define cmb12       0x047b
+#define cmb13       0x047c
+#define cmb14       0x047d
+#define cmb15       0x047e
+#define cmb16       0x047f
+
+//
+//  Edit controls.
+//
+#define edt1        0x0480
+#define edt2        0x0481
+#define edt3        0x0482
+#define edt4        0x0483
+#define edt5        0x0484
+#define edt6        0x0485
+#define edt7        0x0486
+#define edt8        0x0487
+#define edt9        0x0488
+#define edt10       0x0489
+#define edt11       0x048a
+#define edt12       0x048b
+#define edt13       0x048c
+#define edt14       0x048d
+#define edt15       0x048e
+#define edt16       0x048f
+
+//
+//  Scroll bars.
+//
+#define scr1        0x0490
+#define scr2        0x0491
+#define scr3        0x0492
+#define scr4        0x0493
+#define scr5        0x0494
+#define scr6        0x0495
+#define scr7        0x0496
+#define scr8        0x0497
+
+//
+//  These dialog resource ordinals really start at 0x0600, but the
+//  RC Compiler can't handle hex for resource IDs, hence the decimal.
+//
+#define FILEOPENORD      1536
+#define MULTIFILEOPENORD 1537
+#define PRINTDLGORD      1538
+#define PRNSETUPDLGORD   1539
+#define FINDDLGORD       1540
+#define REPLACEDLGORD    1541
+#define FONTDLGORD       1542
+#define FORMATDLGORD31   1543
+#define FORMATDLGORD30   1544
+#define RUNDLGORD        1545
+
+#if (WINVER >= 0x400)
+#define PAGESETUPDLGORD  1546
+#define NEWFILEOPENORD   1547
+#define NEWOBJECTOPENORD 1548
+#endif /* WINVER >= 0x400) */
+
+
+
+
+//
+//  Typedef Declarations.
+//
+typedef struct tagCRGB
+{
+    BYTE    bRed;
+    BYTE    bGreen;
+    BYTE    bBlue;
+    BYTE    bExtra;
+} CRGB;           /* RGB Color */
+
+
+#endif // _DLGSH_INCLUDED_
+                                                                                                                                                                                                                                                                                                                                                                                                                          //9/‘Õ9]/]ﬁ›ƒ99]]10!#!5!3¡ú˛∏˛πe*ú÷Hú˛÷*   ñ  ¡∫ 	 Z@9$î§rC$4	 ê†Ñp //9/3]]]‘Õ/]ﬁ›ƒ99]]]]]]10!#!5!3¡ú˛∏˛π°Óúèèú˛˘  ñ  ¡∫ 	 D@)î§	 	°pÄê	 //9/3]]‘Õ/]ﬁ›ƒ99]10!#!5!3¡ú˛∏˛π°ÓúG◊ú˝7…  ñ  ¡∫  8@ ¶
+ †ëpÄ /3]]]/‘Õ/]ﬁ›ƒ99]10!#!5!3¡ú˛∏˛π°Óúú¸J∂   C  ¡∫  V@3∑∂ô
+∑®ìÜw∆HX //3]]9/3]]]ƒ2]]/3ﬁ›ƒ]]99]10!#73¡ú˛∏˛fSGHú
+˛ÃÖ_˛Ã4   C  ¡∫ 	 2@™V	 //9/Õƒ2/3ﬁ›ƒ99]]10!#!7!3¡ú˛ö˛ÑSGHú÷Ö_˛∏H  C  ¡∫  B@&	∂»ìteFV7 //9/3]]]]]]ƒ2]/3ﬁ›ƒ10!#73¡ú˝SèúèÃ_˝èq  C  ¡∫ 	 B@#	∂õßV∂  //9/3ƒ2]99]]]]/3ﬁ›ƒ9910!#73¡ú˛∏˛fSöıúGèÖ_˛~˛s   C  ¡∫  B@%
+∂ñgwU∂ê /3]/ƒ2]99]]]]/3ﬁ›ƒ9910!#73¡ú˛∏˛fSÆ·ú÷Ö_˛j˝^8  C  z∫  6@	 ∂ÑîVf  //9/3]]ƒ2]/]3ﬁ›ƒ10!#73zú˛eSHú÷Ö_˛Ã4  /  ¡∫  v@JhàÉwXh4Dw
+«&ì£Ét'{H //3]]9/3]]]_]ƒ2]]/3ﬁ›ƒ99_]]]]]10 ]]!#73¡ú˛∏˛RgGHúƒ˝À‰G˝À5   /  ¡∫ 	 f@@Ü∆÷ÊXh6FÖï	∂y¢tî //99//33]]ƒ2]]/3ﬁ›ƒ99]]]]]10!#73¡ú˛∏˛Rga.ú÷˛π‰G˝†@   /  ¡∫ 	 >@"úyâ¶Wg	 //9/Õƒ2/3ﬁ›ƒ99]]]]10!#!7!3¡ú˛∏˛Rg}úè‰G˝qè  /  ¡∫ 	 ]@7£ö™{ãh[J	ëÖv7  //9/3]ƒ299]]]/3ﬁ›ƒ9910 ]]]]]_]!#73¡ú˛∏˛Rgó¯úGH‰G˝@˘π   /  ¡∫  4@ì£ÄsdV  /2]]]]_]/ƒ2/3ﬁ›ƒ10!#73¡ú˝
+gèúsG˚[•   /  z∫  E@)àò	 –&ê†rÇc //9/3]]]ƒ2]/]3ﬁ›ƒ10 ]!#73zú˛QgHúè‰G˝’+   %  ¡∫  z@M)â©uÖhE6*
+xò£êÅt{ //3]]]9/3]]]_]ƒ2]/3ﬁ›ƒ99_]]]]]]10 ]]!#73¡ú˛∏˛HqGHúj¸›<7¸›#   %  ¡∫ 	 u@I§ïâô©xÖvÑ/* this ALWAYS GENERATED file contains the definitions for the interfaces */
+
+
+/* File created by MIDL compiler version 3.03.0110 */
+/* at Thu Sep 11 10:58:56 1997
+ */
+/* Compiler settings for docobj.idl:
+    Oicf (OptLev=i2), W1, Zp8, env=Win32, ms_ext, c_ext
+    error checks: none
+*/
+//@@MIDL_FILE_HEADING(  )
+
+
+/* verify that the <rpcndr.h> version is high enough to compile this file*/
+#ifndef __REQUIRED_RPCNDR_H_VERSION__
+#define __REQUIRED_RPCNDR_H_VERSION__ 440
+#endif
+
+#include "rpc.h"
+#include "rpcndr.h"
+
+#ifndef __RPCNDR_H_VERSION__
+#error this stub requires an updated version of <rpcndr.h>
+#endif // __RPCNDR_H_VERSION__
+
+#ifndef COM_NO_WINDOWS_H
+#include "windows.h"
+#include "ole2.h"
+#endif /*COM_NO_WINDOWS_H*/
+
+#ifndef __docobj_h__
+#define __docobj_h__
+
+#ifdef __cplusplus
+extern "C"{
+#endif 
+
+/* Forward Declarations */ 
+
+#ifndef __IOleDocument_FWD_DEFINED__
+#define __IOleDocument_FWD_DEFINED__
+typedef interface IOleDocument IOleDocument;
+#endif 	/* __IOleDocument_FWD_DEFINED__ */
+
+
+#ifndef __IOleDocumentSite_FWD_DEFINED__
+#define __IOleDocumentSite_FWD_DEFINED__
+typedef interface IOleDocumentSite IOleDocumentSite;
+#endif 	/* __IOleDocumentSite_FWD_DEFINED__ */
+
+
+#ifndef __IOleDocumentView_FWD_DEFINED__
+#define __IOleDocumentView_FWD_DEFINED__
+typedef interface IOleDocumentView IOleDocumentView;
+#endif 	/* __IOleDocumentView_FWD_DEFINED__ */
+
+
+#ifndef __IEnumOleDocumentViews_FWD_DEFINED__
+#define __IEnumOleDocumentViews_FWD_DEFINED__
+typedef interface IEnumOleDocumentViews IEnumOleDocumentViews;
+#endif 	/* __IEnumOleDocumentViews_FWD_DEFINED__ */
+
+
+#ifndef __IContinueCallback_FWD_DEFINED__
+#define __IContinueCallback_FWD_DEFINED__
+typedef interface IContinueCallback IContinueCallback;
+#endif 	/* __IContinueCallback_FWD_DEFINED__ */
+
+
+#ifndef __IPrint_FWD_DEFINED__
+#define __IPrint_FWD_DEFINED__
+typedef interface IPrint IPrint;
+#endif 	/* __IPrint_FWD_DEFINED__ */
+
+
+#ifndef __IOleCommandTarget_FWD_DEFINED__
+#define __IOleCommandTarget_FWD_DEFINED__
+typedef interface IOleCommandTarget IOleCommandTarget;
+#endif 	/* __IOleCommandTarget_FWD_DEFINED__ */
+
+
+/* header files for imported files */
+#include "ocidl.h"
+
+void __RPC_FAR * __RPC_USER MIDL_user_allocate(size_t);
+void __RPC_USER MIDL_user_free( void __RPC_FAR * ); 
+
+/****************************************
+ * Generated header for interface: __MIDL_itf_docobj_0000
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [local] */ 
+
+
+//=--------------------------------------------------------------------------=
+// DocObj.h
+//=--------------------------------------------------------------------------=
+// (C) Copyright 1995 - 1998 Microsoft Corporation.  All Rights Reserved.
+//
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//=--------------------------------------------------------------------------=
+
+#pragma comment(lib,"uuid.lib")
+
+//--------------------------------------------------------------------------
+// OLE Document Object Interfaces.
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////
+//  Interface Definitions
+#ifndef _LPOLEDOCUMENT_DEFINED
+#define _LPOLEDOCUMENT_DEFINED
+
+
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0000_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0000_v0_0_s_ifspec;
+
+#ifndef __IOleDocument_INTERFACE_DEFINED__
+#define __IOleDocument_INTERFACE_DEFINED__
+
+/****************************************
+ * Generated header for interface: IOleDocument
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [unique][uuid][object] */ 
+
+
+typedef /* [unique] */ IOleDocument __RPC_FAR *LPOLEDOCUMENT;
+
+typedef /* [public] */ 
+enum __MIDL_IOleDocument_0001
+    {	DOCMISC_CANCREATEMULTIPLEVIEWS	= 1,
+	DOCMISC_SUPPORTCOMPLEXRECTANGLES	= 2,
+	DOCMISC_CANTOPENEDIT	= 4,
+	DOCMISC_NOFILESUPPORT	= 8
+    }	DOCMISC;
+
+
+EXTERN_C const IID IID_IOleDocument;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("b722bcc5-4e68-101b-a2bc-00aa00404770")
+    IOleDocument : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE CreateView( 
+            /* [unique][in] */ IOleInPlaceSite __RPC_FAR *pIPSite,
+            /* [unique][in] */ IStream __RPC_FAR *pstm,
+            /* [in] */ DWORD dwReserved,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppView) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE GetDocMiscStatus( 
+            /* [out] */ DWORD __RPC_FAR *pdwStatus) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE EnumViews( 
+            /* [out] */ IEnumOleDocumentViews __RPC_FAR *__RPC_FAR *ppEnum,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppView) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IOleDocumentVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IOleDocument __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IOleDocument __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IOleDocument __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CreateView )( 
+            IOleDocument __RPC_FAR * This,
+            /* [unique][in] */ IOleInPlaceSite __RPC_FAR *pIPSite,
+            /* [unique][in] */ IStream __RPC_FAR *pstm,
+            /* [in] */ DWORD dwReserved,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppView);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetDocMiscStatus )( 
+            IOleDocument __RPC_FAR * This,
+            /* [out] */ DWORD __RPC_FAR *pdwStatus);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *EnumViews )( 
+            IOleDocument __RPC_FAR * This,
+            /* [out] */ IEnumOleDocumentViews __RPC_FAR *__RPC_FAR *ppEnum,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppView);
+        
+        END_INTERFACE
+    } IOleDocumentVtbl;
+
+    interface IOleDocument
+    {
+        CONST_VTBL struct IOleDocumentVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IOleDocument_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IOleDocument_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IOleDocument_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IOleDocument_CreateView(This,pIPSite,pstm,dwReserved,ppView)	\
+    (This)->lpVtbl -> CreateView(This,pIPSite,pstm,dwReserved,ppView)
+
+#define IOleDocument_GetDocMiscStatus(This,pdwStatus)	\
+    (This)->lpVtbl -> GetDocMiscStatus(This,pdwStatus)
+
+#define IOleDocument_EnumViews(This,ppEnum,ppView)	\
+    (This)->lpVtbl -> EnumViews(This,ppEnum,ppView)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+HRESULT STDMETHODCALLTYPE IOleDocument_CreateView_Proxy( 
+    IOleDocument __RPC_FAR * This,
+    /* [unique][in] */ IOleInPlaceSite __RPC_FAR *pIPSite,
+    /* [unique][in] */ IStream __RPC_FAR *pstm,
+    /* [in] */ DWORD dwReserved,
+    /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppView);
+
+
+void __RPC_STUB IOleDocument_CreateView_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocument_GetDocMiscStatus_Proxy( 
+    IOleDocument __RPC_FAR * This,
+    /* [out] */ DWORD __RPC_FAR *pdwStatus);
+
+
+void __RPC_STUB IOleDocument_GetDocMiscStatus_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocument_EnumViews_Proxy( 
+    IOleDocument __RPC_FAR * This,
+    /* [out] */ IEnumOleDocumentViews __RPC_FAR *__RPC_FAR *ppEnum,
+    /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppView);
+
+
+void __RPC_STUB IOleDocument_EnumViews_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IOleDocument_INTERFACE_DEFINED__ */
+
+
+/****************************************
+ * Generated header for interface: __MIDL_itf_docobj_0214
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [local] */ 
+
+
+#endif
+#ifndef _LPOLEDOCUMENTSITE_DEFINED
+#define _LPOLEDOCUMENTSITE_DEFINED
+
+
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0214_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0214_v0_0_s_ifspec;
+
+#ifndef __IOleDocumentSite_INTERFACE_DEFINED__
+#define __IOleDocumentSite_INTERFACE_DEFINED__
+
+/****************************************
+ * Generated header for interface: IOleDocumentSite
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [unique][uuid][object] */ 
+
+
+typedef /* [unique] */ IOleDocumentSite __RPC_FAR *LPOLEDOCUMENTSITE;
+
+
+EXTERN_C const IID IID_IOleDocumentSite;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("b722bcc7-4e68-101b-a2bc-00aa00404770")
+    IOleDocumentSite : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE ActivateMe( 
+            /* [in] */ IOleDocumentView __RPC_FAR *pViewToActivate) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IOleDocumentSiteVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IOleDocumentSite __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IOleDocumentSite __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IOleDocumentSite __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ActivateMe )( 
+            IOleDocumentSite __RPC_FAR * This,
+            /* [in] */ IOleDocumentView __RPC_FAR *pViewToActivate);
+        
+        END_INTERFACE
+    } IOleDocumentSiteVtbl;
+
+    interface IOleDocumentSite
+    {
+        CONST_VTBL struct IOleDocumentSiteVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IOleDocumentSite_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IOleDocumentSite_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IOleDocumentSite_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IOleDocumentSite_ActivateMe(This,pViewToActivate)	\
+    (This)->lpVtbl -> ActivateMe(This,pViewToActivate)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentSite_ActivateMe_Proxy( 
+    IOleDocumentSite __RPC_FAR * This,
+    /* [in] */ IOleDocumentView __RPC_FAR *pViewToActivate);
+
+
+void __RPC_STUB IOleDocumentSite_ActivateMe_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IOleDocumentSite_INTERFACE_DEFINED__ */
+
+
+/****************************************
+ * Generated header for interface: __MIDL_itf_docobj_0215
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [local] */ 
+
+
+#endif
+#ifndef _LPOLEDOCUMENTVIEW_DEFINED
+#define _LPOLEDOCUMENTVIEW_DEFINED
+
+
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0215_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0215_v0_0_s_ifspec;
+
+#ifndef __IOleDocumentView_INTERFACE_DEFINED__
+#define __IOleDocumentView_INTERFACE_DEFINED__
+
+/****************************************
+ * Generated header for interface: IOleDocumentView
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [unique][uuid][object] */ 
+
+
+typedef /* [unique] */ IOleDocumentView __RPC_FAR *LPOLEDOCUMENTVIEW;
+
+
+EXTERN_C const IID IID_IOleDocumentView;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("b722bcc6-4e68-101b-a2bc-00aa00404770")
+    IOleDocumentView : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE SetInPlaceSite( 
+            /* [unique][in] */ IOleInPlaceSite __RPC_FAR *pIPSite) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE GetInPlaceSite( 
+            /* [out] */ IOleInPlaceSite __RPC_FAR *__RPC_FAR *ppIPSite) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE GetDocument( 
+            /* [out] */ IUnknown __RPC_FAR *__RPC_FAR *ppunk) = 0;
+        
+        virtual /* [input_sync] */ HRESULT STDMETHODCALLTYPE SetRect( 
+            /* [in] */ LPRECT prcView) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE GetRect( 
+            /* [out] */ LPRECT prcView) = 0;
+        
+        virtual /* [input_sync] */ HRESULT STDMETHODCALLTYPE SetRectComplex( 
+            /* [unique][in] */ LPRECT prcView,
+            /* [unique][in] */ LPRECT prcHScroll,
+            /* [unique][in] */ LPRECT prcVScroll,
+            /* [unique][in] */ LPRECT prcSizeBox) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Show( 
+            /* [in] */ BOOL fShow) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE UIActivate( 
+            /* [in] */ BOOL fUIActivate) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Open( void) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE CloseView( 
+            DWORD dwReserved) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE SaveViewState( 
+            /* [in] */ LPSTREAM pstm) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE ApplyViewState( 
+            /* [in] */ LPSTREAM pstm) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Clone( 
+            /* [in] */ IOleInPlaceSite __RPC_FAR *pIPSiteNew,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppViewNew) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IOleDocumentViewVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IOleDocumentView __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IOleDocumentView __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SetInPlaceSite )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [unique][in] */ IOleInPlaceSite __RPC_FAR *pIPSite);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetInPlaceSite )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [out] */ IOleInPlaceSite __RPC_FAR *__RPC_FAR *ppIPSite);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetDocument )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [out] */ IUnknown __RPC_FAR *__RPC_FAR *ppunk);
+        
+        /* [input_sync] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SetRect )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ LPRECT prcView);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *GetRect )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [out] */ LPRECT prcView);
+        
+        /* [input_sync] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SetRectComplex )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [unique][in] */ LPRECT prcView,
+            /* [unique][in] */ LPRECT prcHScroll,
+            /* [unique][in] */ LPRECT prcVScroll,
+            /* [unique][in] */ LPRECT prcSizeBox);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Show )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ BOOL fShow);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *UIActivate )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ BOOL fUIActivate);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Open )( 
+            IOleDocumentView __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *CloseView )( 
+            IOleDocumentView __RPC_FAR * This,
+            DWORD dwReserved);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *SaveViewState )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ LPSTREAM pstm);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *ApplyViewState )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ LPSTREAM pstm);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Clone )( 
+            IOleDocumentView __RPC_FAR * This,
+            /* [in] */ IOleInPlaceSite __RPC_FAR *pIPSiteNew,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppViewNew);
+        
+        END_INTERFACE
+    } IOleDocumentViewVtbl;
+
+    interface IOleDocumentView
+    {
+        CONST_VTBL struct IOleDocumentViewVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IOleDocumentView_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IOleDocumentView_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IOleDocumentView_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IOleDocumentView_SetInPlaceSite(This,pIPSite)	\
+    (This)->lpVtbl -> SetInPlaceSite(This,pIPSite)
+
+#define IOleDocumentView_GetInPlaceSite(This,ppIPSite)	\
+    (This)->lpVtbl -> GetInPlaceSite(This,ppIPSite)
+
+#define IOleDocumentView_GetDocument(This,ppunk)	\
+    (This)->lpVtbl -> GetDocument(This,ppunk)
+
+#define IOleDocumentView_SetRect(This,prcView)	\
+    (This)->lpVtbl -> SetRect(This,prcView)
+
+#define IOleDocumentView_GetRect(This,prcView)	\
+    (This)->lpVtbl -> GetRect(This,prcView)
+
+#define IOleDocumentView_SetRectComplex(This,prcView,prcHScroll,prcVScroll,prcSizeBox)	\
+    (This)->lpVtbl -> SetRectComplex(This,prcView,prcHScroll,prcVScroll,prcSizeBox)
+
+#define IOleDocumentView_Show(This,fShow)	\
+    (This)->lpVtbl -> Show(This,fShow)
+
+#define IOleDocumentView_UIActivate(This,fUIActivate)	\
+    (This)->lpVtbl -> UIActivate(This,fUIActivate)
+
+#define IOleDocumentView_Open(This)	\
+    (This)->lpVtbl -> Open(This)
+
+#define IOleDocumentView_CloseView(This,dwReserved)	\
+    (This)->lpVtbl -> CloseView(This,dwReserved)
+
+#define IOleDocumentView_SaveViewState(This,pstm)	\
+    (This)->lpVtbl -> SaveViewState(This,pstm)
+
+#define IOleDocumentView_ApplyViewState(This,pstm)	\
+    (This)->lpVtbl -> ApplyViewState(This,pstm)
+
+#define IOleDocumentView_Clone(This,pIPSiteNew,ppViewNew)	\
+    (This)->lpVtbl -> Clone(This,pIPSiteNew,ppViewNew)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_SetInPlaceSite_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [unique][in] */ IOleInPlaceSite __RPC_FAR *pIPSite);
+
+
+void __RPC_STUB IOleDocumentView_SetInPlaceSite_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_GetInPlaceSite_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [out] */ IOleInPlaceSite __RPC_FAR *__RPC_FAR *ppIPSite);
+
+
+void __RPC_STUB IOleDocumentView_GetInPlaceSite_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_GetDocument_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [out] */ IUnknown __RPC_FAR *__RPC_FAR *ppunk);
+
+
+void __RPC_STUB IOleDocumentView_GetDocument_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [input_sync] */ HRESULT STDMETHODCALLTYPE IOleDocumentView_SetRect_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [in] */ LPRECT prcView);
+
+
+void __RPC_STUB IOleDocumentView_SetRect_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_GetRect_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [out] */ LPRECT prcView);
+
+
+void __RPC_STUB IOleDocumentView_GetRect_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [input_sync] */ HRESULT STDMETHODCALLTYPE IOleDocumentView_SetRectComplex_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [unique][in] */ LPRECT prcView,
+    /* [unique][in] */ LPRECT prcHScroll,
+    /* [unique][in] */ LPRECT prcVScroll,
+    /* [unique][in] */ LPRECT prcSizeBox);
+
+
+void __RPC_STUB IOleDocumentView_SetRectComplex_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_Show_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [in] */ BOOL fShow);
+
+
+void __RPC_STUB IOleDocumentView_Show_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_UIActivate_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [in] */ BOOL fUIActivate);
+
+
+void __RPC_STUB IOleDocumentView_UIActivate_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_Open_Proxy( 
+    IOleDocumentView __RPC_FAR * This);
+
+
+void __RPC_STUB IOleDocumentView_Open_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_CloseView_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    DWORD dwReserved);
+
+
+void __RPC_STUB IOleDocumentView_CloseView_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_SaveViewState_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [in] */ LPSTREAM pstm);
+
+
+void __RPC_STUB IOleDocumentView_SaveViewState_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_ApplyViewState_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [in] */ LPSTREAM pstm);
+
+
+void __RPC_STUB IOleDocumentView_ApplyViewState_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IOleDocumentView_Clone_Proxy( 
+    IOleDocumentView __RPC_FAR * This,
+    /* [in] */ IOleInPlaceSite __RPC_FAR *pIPSiteNew,
+    /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *ppViewNew);
+
+
+void __RPC_STUB IOleDocumentView_Clone_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IOleDocumentView_INTERFACE_DEFINED__ */
+
+
+/****************************************
+ * Generated header for interface: __MIDL_itf_docobj_0216
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [local] */ 
+
+
+#endif
+#ifndef _LPENUMOLEDOCUMENTVIEWS_DEFINED
+#define _LPENUMOLEDOCUMENTVIEWS_DEFINED
+
+
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0216_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0216_v0_0_s_ifspec;
+
+#ifndef __IEnumOleDocumentViews_INTERFACE_DEFINED__
+#define __IEnumOleDocumentViews_INTERFACE_DEFINED__
+
+/****************************************
+ * Generated header for interface: IEnumOleDocumentViews
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [unique][uuid][object] */ 
+
+
+typedef /* [unique] */ IEnumOleDocumentViews __RPC_FAR *LPENUMOLEDOCUMENTVIEWS;
+
+
+EXTERN_C const IID IID_IEnumOleDocumentViews;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("b722bcc8-4e68-101b-a2bc-00aa00404770")
+    IEnumOleDocumentViews : public IUnknown
+    {
+    public:
+        virtual /* [local] */ HRESULT __stdcall Next( 
+            /* [in] */ ULONG cViews,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *rgpView,
+            /* [out] */ ULONG __RPC_FAR *pcFetched) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Skip( 
+            /* [in] */ ULONG cViews) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Reset( void) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE Clone( 
+            /* [out] */ IEnumOleDocumentViews __RPC_FAR *__RPC_FAR *ppEnum) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IEnumOleDocumentViewsVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IEnumOleDocumentViews __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IEnumOleDocumentViews __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IEnumOleDocumentViews __RPC_FAR * This);
+        
+        /* [local] */ HRESULT ( __stdcall __RPC_FAR *Next )( 
+            IEnumOleDocumentViews __RPC_FAR * This,
+            /* [in] */ ULONG cViews,
+            /* [out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *rgpView,
+            /* [out] */ ULONG __RPC_FAR *pcFetched);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Skip )( 
+            IEnumOleDocumentViews __RPC_FAR * This,
+            /* [in] */ ULONG cViews);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Reset )( 
+            IEnumOleDocumentViews __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *Clone )( 
+            IEnumOleDocumentViews __RPC_FAR * This,
+            /* [out] */ IEnumOleDocumentViews __RPC_FAR *__RPC_FAR *ppEnum);
+        
+        END_INTERFACE
+    } IEnumOleDocumentViewsVtbl;
+
+    interface IEnumOleDocumentViews
+    {
+        CONST_VTBL struct IEnumOleDocumentViewsVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IEnumOleDocumentViews_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IEnumOleDocumentViews_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IEnumOleDocumentViews_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IEnumOleDocumentViews_Next(This,cViews,rgpView,pcFetched)	\
+    (This)->lpVtbl -> Next(This,cViews,rgpView,pcFetched)
+
+#define IEnumOleDocumentViews_Skip(This,cViews)	\
+    (This)->lpVtbl -> Skip(This,cViews)
+
+#define IEnumOleDocumentViews_Reset(This)	\
+    (This)->lpVtbl -> Reset(This)
+
+#define IEnumOleDocumentViews_Clone(This,ppEnum)	\
+    (This)->lpVtbl -> Clone(This,ppEnum)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+/* [call_as] */ HRESULT __stdcall IEnumOleDocumentViews_RemoteNext_Proxy( 
+    IEnumOleDocumentViews __RPC_FAR * This,
+    /* [in] */ ULONG cViews,
+    /* [length_is][size_is][out] */ IOleDocumentView __RPC_FAR *__RPC_FAR *rgpView,
+    /* [out] */ ULONG __RPC_FAR *pcFetched);
+
+
+void __RPC_STUB IEnumOleDocumentViews_RemoteNext_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IEnumOleDocumentViews_Skip_Proxy( 
+    IEnumOleDocumentViews __RPC_FAR * This,
+    /* [in] */ ULONG cViews);
+
+
+void __RPC_STUB IEnumOleDocumentViews_Skip_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IEnumOleDocumentViews_Reset_Proxy( 
+    IEnumOleDocumentViews __RPC_FAR * This);
+
+
+void __RPC_STUB IEnumOleDocumentViews_Reset_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IEnumOleDocumentViews_Clone_Proxy( 
+    IEnumOleDocumentViews __RPC_FAR * This,
+    /* [out] */ IEnumOleDocumentViews __RPC_FAR *__RPC_FAR *ppEnum);
+
+
+void __RPC_STUB IEnumOleDocumentViews_Clone_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+
+#endif 	/* __IEnumOleDocumentViews_INTERFACE_DEFINED__ */
+
+
+/****************************************
+ * Generated header for interface: __MIDL_itf_docobj_0217
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [local] */ 
+
+
+#endif
+#ifndef _LPCONTINUECALLBACK_DEFINED
+#define _LPCONTINUECALLBACK_DEFINED
+
+
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0217_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_docobj_0217_v0_0_s_ifspec;
+
+#ifndef __IContinueCallback_INTERFACE_DEFINED__
+#define __IContinueCallback_INTERFACE_DEFINED__
+
+/****************************************
+ * Generated header for interface: IContinueCallback
+ * at Thu Sep 11 10:58:56 1997
+ * using MIDL 3.03.0110
+ ****************************************/
+/* [unique][uuid][object] */ 
+
+
+typedef /* [unique] */ IContinueCallback __RPC_FAR *LPCONTINUECALLBACK;
+
+
+EXTERN_C const IID IID_IContinueCallback;
+
+#if defined(__cplusplus) && !defined(CINTERFACE)
+    
+    MIDL_INTERFACE("b722bcca-4e68-101b-a2bc-00aa00404770")
+    IContinueCallback : public IUnknown
+    {
+    public:
+        virtual HRESULT STDMETHODCALLTYPE FContinue( void) = 0;
+        
+        virtual HRESULT STDMETHODCALLTYPE FContinuePrinting( 
+            /* [in] */ LONG nCntPrinted,
+            /* [in] */ LONG nCurPage,
+            /* [unique][in] */ wchar_t __RPC_FAR *pwszPrintStatus) = 0;
+        
+    };
+    
+#else 	/* C style interface */
+
+    typedef struct IContinueCallbackVtbl
+    {
+        BEGIN_INTERFACE
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *QueryInterface )( 
+            IContinueCallback __RPC_FAR * This,
+            /* [in] */ REFIID riid,
+            /* [iid_is][out] */ void __RPC_FAR *__RPC_FAR *ppvObject);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *AddRef )( 
+            IContinueCallback __RPC_FAR * This);
+        
+        ULONG ( STDMETHODCALLTYPE __RPC_FAR *Release )( 
+            IContinueCallback __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *FContinue )( 
+            IContinueCallback __RPC_FAR * This);
+        
+        HRESULT ( STDMETHODCALLTYPE __RPC_FAR *FContinuePrinting )( 
+            IContinueCallback __RPC_FAR * This,
+            /* [in] */ LONG nCntPrinted,
+            /* [in] */ LONG nCurPage,
+            /* [unique][in] */ wchar_t __RPC_FAR *pwszPrintStatus);
+        
+        END_INTERFACE
+    } IContinueCallbackVtbl;
+
+    interface IContinueCallback
+    {
+        CONST_VTBL struct IContinueCallbackVtbl __RPC_FAR *lpVtbl;
+    };
+
+    
+
+#ifdef COBJMACROS
+
+
+#define IContinueCallback_QueryInterface(This,riid,ppvObject)	\
+    (This)->lpVtbl -> QueryInterface(This,riid,ppvObject)
+
+#define IContinueCallback_AddRef(This)	\
+    (This)->lpVtbl -> AddRef(This)
+
+#define IContinueCallback_Release(This)	\
+    (This)->lpVtbl -> Release(This)
+
+
+#define IContinueCallback_FContinue(This)	\
+    (This)->lpVtbl -> FContinue(This)
+
+#define IContinueCallback_FContinuePrinting(This,nCntPrinted,nCurPage,pwszPrintStatus)	\
+    (This)->lpVtbl -> FContinuePrinting(This,nCntPrinted,nCurPage,pwszPrintStatus)
+
+#endif /* COBJMACROS */
+
+
+#endif 	/* C style interface */
+
+
+
+HRESULT STDMETHODCALLTYPE IContinueCallback_FContinue_Proxy( 
+    IContinueCallback __RPC_FAR * This);
+
+
+void __RPC_STUB IContinueCallback_FContinue_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+HRESULT STDMETHODCALLTYPE IContinueCallback_FContinuePrinting_Proxy( 
+    IContinueCallback __RPC_FAR * This,
+    /* [in] */ LONG nCntPrinted,
+    /* [in] */ LONG nCurPage,
+    /* [unique][in] */ wchar_t __RPC_FAR *pwszPrintStatus);
+
+
+void __RPC_STUB IContinueCallback_FContinuePrinting_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage

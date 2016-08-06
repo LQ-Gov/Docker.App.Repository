@@ -1,0 +1,321 @@
+ls = .F.
+		ENDIF
+	NEXT
+
+	*- Set Chart type
+	IF !THIS.lHadPreview  && if user previewed, they may have entered MS Graph and manually changed chart type
+		DO CASE
+			CASE THIS.lUseAutoFormat
+				THIS.oGraphRef.autoformat(THIS.nChartAutoGallery,THIS.nChartAutoFormat)
+			CASE THIS.lUse8Type
+				THIS.oGraphRef.charttype = THIS.nChartType
+			OTHERWISE
+				THIS.oGraphRef.type = THIS.nChartType
+				THIS.oGraphRef.subtype = THIS.nChartSubType
+		ENDCASE
+	ENDIF
+
+	*- Add legend
+	THIS.oGraphRef.HasLegend = THIS.lAddLegend
+	IF THIS.lAddLegend
+		WITH THIS.oGraphRef.Legend
+			IF THIS.lUse8Type
+				m.iLegendCount = .LegendEntries.Count
+				IF !THIS.lDontStripLegend
+					IF m.iLegendCount > THIS.ndataseries
+						FOR i = 0 TO m.iLegendCount - THIS.ndataseries - 1
+							IF TYPE(".LegendEntries(m.iLegendCount - i)") == 'O'
+								.LegendEntries(m.iLegendCount - i).Delete
+							ENDIF
+						NEXT
+					ENDIF
+				ENDIF
+			ENDIF
+		ENDWITH
+	ENDIF
+
+	WAIT CLEAR
+	RETURN !THIS.Haderror
+
+ENDIF		&& nAction = 2 (save to table)
+ENDPROC
+PROCEDURE getoleserver
+LOCAL iHeight, iWidth, lSetPreviewProps
+LOCAL lCreateForm, lAddGraphObject, cAppName, cAppVersion
+
+lCreateForm = .T.
+lAddGraphObject = .T.
+
+*- see if user passed in valid objects
+IF TYPE("THIS.GraphPreview") == 'O' AND !ISNULL(THIS.GraphPreview)
+	IF LOWER(ALLTRIM(THIS.GraphPreview.BaseClass)) == "form"
+		lCreateForm = .F.
+	ENDIF
+ENDIF
+
+THIS.HadError = .F.
+IF TYPE("THIS.oGraphRef") == 'O' AND !ISNULL(THIS.oGraphRef)
+	cAppName = THIS.oGraphRef.application.name
+	IF !THIS.HadError
+		IF m.cAppName = MSGRAPH_APPNAME
+			cAppVersion = VAL(THIS.oGraphRef.application.version)
+			IF !THIS.HadError
+				IF m.cAppVersion >= MSGRAPH_VERSION
+					lAddGraphObject = .F.
+				ENDIF
+			ENDIF
+		ENDIF
+	ENDIF
+ENDIF
+THIS.HadError = .F.
+
+*- Need to activate server
+DO CASE
+	CASE THIS.lAutoGraph AND ATC(JUSTEXT(THIS.cOutFile),"DBF")#0
+ 		THIS.graphpreview = CREATE(THIS.cGraphPrevClass)
+		THIS.oGraphRef = THIS.graphpreview.oleboundcontrol1
+		m.lSetPreviewProps = .F.
+	CASE THIS.lAutoGraph
+		IF m.lCreateForm
+			THIS.graphpreview = CREATEOBJ("form")
+			THIS.graphpreview.DefOleLCID = 0
+		ENDIF
+		IF m.lAddGraphObject
+			THIS.graphpreview.AddObject("oChart","oleControl",MSGRAPH_8_CLASS)
+			THIS.graphpreview.oChart.Visible = .T.
+			THIS.oGraphRef = THIS.graphpreview.oChart.Object
+			iheight = 200
+			iwidth = 300
+			m.lSetPreviewProps = .T.
+		ENDIF
+					
+	CASE (THIS.nAction == 2 OR  THIS.ngraphVersion < 8) AND ;
+		((TYPE('THIS.graphpreview')#'O' AND;
+		 TYPE('THIS.oGraphRef')#'O') OR;
+		 ISNULL(THIS.GraphPreview))
+		 
+ 		THIS.graphpreview = CREATE(THIS.cGraphPrevClass)
+		THIS.oGraphRef = THIS.graphpreview.oleboundcontrol1
+		m.lSetPreviewProps = .F.
+
+	CASE (TYPE('THIS.graphpreview')#'O' AND;
+		 TYPE('THIS.oGraphRef')#'O') OR;
+		 ISNULL(THIS.GraphPreview)
+
+		IF m.lCreateForm
+			THIS.graphpreview = CREATE("form")
+		ENDIF
+		IF m.lAddGraphObject
+			THIS.graphpreview.AddObject("oChart","oleControl",MSGRAPH_8_CLASS)
+			THIS.oGraphRef = THIS.graphpreview.oChart.Object
+			iheight = 250
+			iwidth = 450
+			m.lSetPreviewProps = .T.
+		ENDIF
+
+		IF m.lCreateForm
+			WITH THIS.graphPreview
+				.Height = 315
+				.Width = 450
+				.Caption = C_PRVWCAPTION_LOC
+				.AlwaysOnTop = .T.
+				.AutoCenter = .T.
+				.Closable = .F.
+				.WindowType = 1
+
+				.NewObject("cmdReturn","cmdReturn",THIS.classlibrary)
+				.cmdReturn.Visible = .T.
+				.cmdReturn.Left = 156
+				.cmdReturn.Top = 265
+			ENDWITH
+		ENDIF
+ENDCASE
+
+IF TYPE('THIS.oGraphRef') # 'O' OR THIS.Haderror
+	RETURN .F.
+ENDIF
+
+IF m.lSetPreviewProps AND TYPE("THIS.graphpreview.oChart") == 'O' AND !ISNULL(THIS.graphpreview.oChart)
+	WITH THIS.graphpreview.oChart
+		.height = m.iHeight
+		.width = m.iWidth
+		.autosize = .t.
+		.stretch = 1
+		.visible = .t.
+	ENDWITH
+ENDIF
+ENDPROC
+PROCEDURE checkdata
+LOCAL lRetVal,cOldExact
+*- Check for valid data
+m.cOldExact = SET("EXACT")
+SET EXACT ON  && for ASCANs
+m.lRetVal = THIS.ValidDataTable()
+SET EXACT &cOldExact
+IF !m.lRetVal
+	THIS.lAddedData = .F.
+	RETURN	.F.
+ENDIF
+
+ENDPROC
+PROCEDURE Error
+LPARAMETERS nError, cMethod, nLine
+
+* Check for OLE error, otherwise pass it on
+LOCAL nTotErrors,aErrs
+IF THIS.SetErrorOff
+	THIS.HadError = .T.
+	RETURN
+ENDIF
+DIMENSION aErrs[1]
+m.nTotErrors=AERROR(aErrs)
+IF m.nTotErrors>0 AND BETWEEN(aErrs[1],1420,1460)
+	THIS.ALERT(C_OLEERROR_LOC + " (Error: " + ALLTRIM(STR(aErrs[1])) + ")")
+	THIS.HadError = .T.
+	RETURN
+ENDIF
+* Make sure we reset the Localization ID
+=SYS(3006,THIS.nSaveLocaleId)
+Automation::ERROR(m.nError,m.cMethod,m.nLine)
+
+ENDPROC
+PROCEDURE Destroy
+THIS.oGraphRef = ""
+THIS.graphpreview = ""
+IF USED('vfpgtemp')
+	USE IN vfpgtemp
+ENDIF
+DODEFAULT()
+
+ENDPROC
+PROCEDURE makeoutput
+LOCAL cTmpFld,cQPRFile,cOldSafe,cGraphField,nRetVal,cOutGenField
+LOCAL iOldSelect
+THIS.HadError = .F.
+
+*- Quick check for source table.
+DO CASE
+	CASE EMPTY(THIS.cAlias) AND EMPTY(ALIAS())
+		=MESSAGEBOX(C_NOSOURCE_LOC)
+		RETURN .F.
+	CASE EMPTY(THIS.cAlias)
+		THIS.cAlias = ALIAS()
+	OTHERWISE
+		SELECT (THIS.cAlias)
+ENDCASE
+
+IF EMPTY(THIS.cOutFile) AND THIS.nAction # 0
+	THIS.GetSaveFile(ALIAS())
+	IF EMPTY(THIS.cOutFile)
+		RETURN
+	ENDIF
+	IF THIS.lAutoGraph AND ATC(JUSTEXT(THIS.cOutFile),"DBF")#0
+		THIS.nAction = 2
+	ENDIF
+ENDIF
+
+IF THIS.lGraphRecord
+	IF BETWEEN(RECNO(),1,RECC())
+		THIS.iCurrRec = RECNO()
+	ELSE
+		*- EOF or BOF
+		RETURN
+	ENDIF
+ENDIF
+
+IF THIS.nAction = 3			&& Save and open query
+	IF !THIS.CheckData()
+		RETURN .F.
+	ENDIF	
+	THIS.MakeQPR()
+	m.cQPRFile = "'" + THIS.cOutFile + "'"
+	_SHELL = [MODIFY QUERY &cQPRFile NOWAIT]
+	RETURN
+ENDIF
+
+*** Start Using OLE Automation ***
+* We need to make sure that we are using English 
+* version so that server understands commands.
+=SYS(3006,1033)
+
+IF THIS.nAction # THIS.nLastAction AND !THIS.lKeepForm
+	THIS.oGraphRef = ""
+	THIS.graphpreview = ""
+	THIS.nLastAction = THIS.nAction
+	THIS.lAddedData = .F.
+ENDIF
+
+IF !THIS.AddGraphData()
+	RETURN .F.
+ENDIF
+
+IF !THIS.AddGraphFx()
+	RETURN .F.
+ENDIF
+
+DO CASE
+	CASE THIS.nAction = 0	&& Preview graph
+		IF TYPE("THIS.graphpreview") == "O" AND THIS.lShowWhenDone
+			THIS.graphpreview.show
+		ENDIF
+		
+	CASE THIS.nAction = 1	&& Save graph to a form
+		m.cOldSafe = SET("SAFETY")
+		SET SAFETY OFF
+		
+		WITH THIS.graphpreview
+			IF TYPE("THIS.graphpreview.cmdReturn") == 'O' AND !ISNULL(.cmdReturn)
+				.RemoveObject("cmdReturn")
+			ENDIF
+			.WindowType = 0
+			.AlwaysOnTop = .F.
+			.Closable = .T.
+			.Caption = IIF(EMPTY(CURSORGETPROP("DATABASE", THIS.cAlias)), THIS.cAlias, CURSORGETPROP("SourceName", THIS.cAlias))
+			.SaveAs(THIS.cOutFile)
+		ENDWITH
+		
+		SET SAFETY &cOldSafe
+		IF THIS.Haderror
+			THIS.ALERT(C_HADERROR_LOC)
+			RETURN .F.
+		ENDIF
+		IF INLIST(PROGRAM(1),"GRSTART","WIZARD") OR THIS.lAutoGraph
+			_SHELL = [MODIFY FORM "] + THIS.cOutFile + ["]
+		ENDIF
+
+	CASE THIS.nAction = 2	&& Save graph to table
+
+		THIS.oGraphRef = ""
+		THIS.graphpreview = ""
+				
+		* Save to new table
+		m.cOldSafe = SET("SAFETY")
+		SET SAFETY OFF
+		m.cGraphField = THIS.cGraphField
+		THIS.Haderror = .F.
+		
+		* Overwrite table / Append existing table
+		THIS.SetErrorOff = .T.
+		IF !FILE(THIS.cOutFile) OR THIS.lReplaceDBF OR EMPTY(THIS.cOutGenField)
+			CREATE TABLE (THIS.cOutFile) FREE ((THIS.cDefNewField) g)
+			INSERT INTO (DBF()) VALUE(vfpgtemp.&cGraphField.)
+		ELSE
+			IF EMPTY(THIS.cOpenAlias)
+				SELECT 0
+				USE (THIS.cOutFile) AGAIN SHARED
+			ELSE
+				SELECT (THIS.cOpenAlias)
+			ENDIF
+			INSERT INTO (DBF()) ((THIS.cOutGenField)) VALUE(vfpgtemp.&cGraphField.)
+			THIS.cDefNewField = THIS.cOutGenField
+		ENDIF
+
+		THIS.SetErrorOff = .F.
+		
+		SET SAFETY &cOldSafe
+		IF THIS.Haderror
+			THIS.ALERT(C_HADERROR_LOC)
+			RETURN .F.
+		ENDIF
+
+		m.cTmpFld = ALIAS() + "." + 

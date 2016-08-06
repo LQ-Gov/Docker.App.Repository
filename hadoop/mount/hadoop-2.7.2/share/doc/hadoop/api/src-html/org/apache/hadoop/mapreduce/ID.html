@@ -1,0 +1,214 @@
+
+    if($IT_RemoteAddress -eq $null -or  $IT_RemoteAddress[0].Length -eq 0) {
+      #Failed retriving Remote Address
+      return $null
+    }
+
+    $IT_Protocol = Get-DiagInput -ID "IT_Protocol"
+    if($IT_Protocol -eq $null -or  $IT_Protocol[0].Length -eq 0) {
+      #Failed retriving Remote Port
+      return $null
+    }
+
+    $IT_ApplicationID = Get-DiagInput -ID "IT_ApplicationID"
+    if($IT_ApplicationID -eq $null -or  $IT_ApplicationID[0].Length -eq 0) {
+      #Failed retriving Application ID
+      return $null
+    }
+
+    #build entry point parameters
+    $haXML = "<HelperAttributes><HelperAttribute><Name>remoteaddr</Name><Type>AT_SOCKADDR</Type><Value>" + $IT_RemoteAddress  +  "</Value></HelperAttribute>";
+    $haXML += "<HelperAttribute><Name>protocol</Name><Type>AT_UINT32</Type><Value>" + $IT_Protocol +  "</Value></HelperAttribute>";
+    $haXML += "<HelperAttribute><Name>localaddr</Name><Type>AT_SOCKADDR</Type><Value>0.0.0.0</Value></HelperAttribute>";
+    $haXML += "<HelperAttribute><Name>appid</Name><Type>AT_STRING</Type><Value>" + $IT_ApplicationID + "</Value></HelperAttribute>";
+    $haXML += "</HelperAttributes>";
+    return @{"HelperClassName" = "Winsock"; "HelperAttributes" =$haXML}
+}
+
+function GroupingEntry()
+{
+    $IT_GroupName = Get-DiagInput -ID "IT_GroupName"
+    if($IT_GroupName -eq $null -or  $IT_GroupName[0].Length -eq 0) {
+      #Failed retriving Remote Address
+      return $null
+    }
+
+    #build entry point parameters
+    $haXML = "<HelperAttributes><HelperAttribute><Name>groupname</Name><Type>AT_STRING</Type><Value>" + $IT_GroupName +  "</Value></HelperAttribute></HelperAttributes>"
+    return @{"HelperClassName" = "GroupingHelperClass"; "HelperAttributes" =$haXML}
+}
+
+function GetValidExePath($File)
+{
+     &{
+        $uri = [System.URI]($File);
+        $scheme = $uri.scheme;
+        if(($scheme -eq "file" ))
+        {
+            #make sure it send in .exe
+            if($File.ToLower().IndexOf(".exe") -eq ($File.Length - 4))
+            {
+                return $File;
+            }
+        }
+        return $null;
+    }
+    trap [Exception]
+    {
+        return $null;
+    }
+}
+
+function InboundEntry()
+{
+    #include the firewall utility code
+    . .\UtilityFirewall.ps1
+
+    $staticOptionRes = @($INBOUND_FILESHARE_RESOURCE, $INBOUND_REMOTEDESKTOP_RESOURCE, $INBOUND_DISCOVERY_RESOURCE)
+    $staticOptions = @($INBOUND_FILESHARE_PARAM, $INBOUND_REMOTEDESKTOP_PARAM, $INBOUND_DISCOVERY_PARAM)
+    # If defined for the corresponding option, the item will be filtered out if the current sku matches anything in the list
+    # Sku values as defined in the OperatingSystemSKU property of Win32_OperatingSystem
+    $SKUFilters = @($null, @(2,3,5,11), $null)
+
+    #get the SKU, to filter out inappropriate static options
+    $SKUObject = get-wmiobject -class Win32_OperatingSystem -property "OperatingSystemSKU"
+    $SKU = $SKUObject.OperatingSystemSKU
+
+    $optionList = @()
+    $curOptionIndex = 0
+    for($curStaticOption = 0; $curStaticOption -lt $staticOptions.Length; $curStaticOption++)
+    {
+        $SKUFilter = $SKUFilters[$curStaticOption]
+        if($SKUFilter)
+        {
+            if($SKUFilter -contains $SKU)
+            {
+                #should filter out this option from the list because it is not present in the SKU
+                continue;
+            }
+        }
+
+        $curApp = LoadResourceString($staticOptionRes[$curStaticOption])
+        $curHash = @{}
+        $curHash.Add("Name",$curApp)
+        $curHash.Add("Value",$curOptionIndex)
+        $curHash.Add("Description",$curApp)
+        $curHash.Add("HelperAttributeName","serviceid")
+        $curHash.Add("HelperAttributeValue",$staticOptions[$curStaticOption])
+        $optionList += $curHash
+        $curOptionIndex++
+    }
+
+    #add dynamic options (do not fail if call fails)
+    $script:ExpectingException = $true
+    $droppedApps = [Microsoft.Windows.Diagnosis.FirewallAPI.ManagedMethods]::GetDiagAppInfo()
+    $script:ExpectingException = $false
+    if($droppedApps)
+    {
+        foreach($droppedApp in $droppedApps)
+        {
+            #omit svchosts since we cannot display a friendly name for them
+            if($droppedApp.Path.IndexOf("svchost") -eq -1)
+            {
+                $appEntryDisplayStr = [System.String]::Format([System.Globalization.CultureInfo]::InvariantCulture, $localizationString.interaction_Inbound_Exe, $droppedApp.FriendlyName);
+                $curHash = @{}
+                $curHash.Add("Name",$appEntryDisplayStr)
+                $curHash.Add("Value",$curOptionIndex)
+                $curHash.Add("Description",$droppedApp.FriendlyName)
+                $curHash.Add("HelperAttributeName","appid")
+                $curHash.Add("HelperAttributeValue",$droppedApp.Path)
+                $optionList += $curHash
+                $curOptionIndex++
+            }
+        }
+    }
+
+    #add the last option to browse for files
+    $curApp = LoadResourceString($INBOUND_OTHER_RESOURCE)
+    $curHash = @{}
+    $curHash.Add("Name",$curApp)
+    $curHash.Add("Value",$curOptionIndex)
+    $curHash.Add("Description",$curApp)
+    $curHash.Add("HelperAttributeName","serviceid")
+    $curHash.Add("HelperAttributeValue",$INBOUND_OTHER_RESOURCE)
+    $optionList += $curHash
+
+
+    #trap exception if it happens, and if expected don't fail
+    trap [Exception]
+    {
+        if($script:ExpectingException)
+        {
+            $script:ExpectingException = $false
+            "Exception: " + $_.Exception.GetType().FullName + " Message: " + $_.Exception.Message  | convertto-xml | Update-DiagReport -id GetDiagAppInfoFailure -name "GetDiagAppInfo" -verbosity Debug
+            continue;
+        }
+        else
+        {
+            #rethrow exception
+            throw $_.Exception;
+        }
+    }
+
+    $IT_ServiceName = Get-DiagInput -ID "IT_ServiceName" -c $optionList
+    if($IT_ServiceName -eq $null -or  $IT_ServiceName[0].Length -eq 0) {
+      #Failed retriving service name
+      return $null
+    }
+
+    $optionSelected = $optionList[$IT_ServiceName]
+    $optionSelected = $optionSelected[0] #need to to this to get access to the dictionary entry object
+    $HelperAttributeName = $null
+    $HelperAttributeValue = $null
+
+    if($optionSelected.HelperAttributeValue -eq $INBOUND_OTHER_RESOURCE)
+    {
+        #show the file browsing interaction so that the user can pick their own executable
+        $IT_BrowseFile = Get-DiagInput -ID "IT_BrowseFile"
+        if($IT_BrowseFile -eq $null) {
+          #Failed retriving file
+          return $null
+        }
+
+        $validExe = GetValidExePath $IT_BrowseFile[0]
+        while(!$validExe)
+        {
+            #build the RTF text
+            #build the error
+            $replacedError = [System.String]::Format([System.Globalization.CultureInfo]::InvariantCulture, $localizationString.interaction_InvalidExe_FormatError , $IT_BrowseFile[0]);
+            #only a single line
+            $RTFText = GetErrorRTF ($localizationString.interaction_InvalidExe_Desc) ($replacedError);
+
+            #reprompt for input
+            $IT_BrowseFile = Get-DiagInput -ID "IT_Invalid_BrowseFile" -p @{"File" = $IT_BrowseFile[0]; "RTFText" = $RTFText}
+            if($IT_BrowseFile -eq $null) {
+              #Failed retriving file
+              return $null
+            }
+
+            $validExe = GetValidExePath $IT_BrowseFile[0]
+        }
+
+
+        $HelperAttributeName = "appid"
+        $HelperAttributeValue = $IT_BrowseFile;
+    }
+    else
+    {
+        $HelperAttributeName = $optionSelected.HelperAttributeName
+        $HelperAttributeValue = $optionSelected.HelperAttributeValue
+    }
+
+    #build entry point parameters
+    $haXML = "<HelperAttributes>"
+    $haXML += "<HelperAttribute><Name>" + $HelperAttributeName + "</Name><Type>AT_STRING</Type><Value>" + $HelperAttributeValue +  "</Value></HelperAttribute>"
+    $haXML += "<HelperAttribute><Name>localaddr</Name><Type>AT_SOCKADDR</Type><Value>0.0.0.0</Value></HelperAttribute>"
+    $haXML += "</HelperAttributes>"
+    return @{"HelperClassName" = "Winsock"; "HelperAttributes" =$haXML}
+}
+
+function DirectAccessEntry()
+{
+    $toReturn = $null;
+
+    $path = "hklm:S
