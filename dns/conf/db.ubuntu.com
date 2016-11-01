@@ -13,13 +13,13 @@ $TTL	604800
 @	IN	A	127.0.0.1
 @	IN	AAAA	::1
 
-1.ubuntu.com. IN   A 172.17.4.1
-2.ubuntu.com. IN   A 172.17.4.2
-3.ubuntu.com. IN   A 172.17.4.3
-4.ubuntu.com. IN   A 172.17.4.4
-5.ubuntu.com. IN   A 172.17.4.5
-6.ubuntu.com. IN   A 172.17.4.6
-7.ubuntu.com. IN   A 172.17.4.7
-8.ubuntu.com. IN   A 172.17.4.8
-9.ubuntu.com. IN   A 172.17.4.9
-10.ubuntu.com. IN  A 172.17.4.10
+1.ubuntu.com. IN   A 172.17.6.1
+2.ubuntu.com. IN   A 172.17.6.2
+3.ubuntu.com. IN   A 172.17.6.3
+4.ubuntu.com. IN   A 172.17.6.4
+5.ubuntu.com. IN   A 172.17.6.5
+6.ubuntu.com. IN   A 172.17.6.6
+7.ubuntu.com. IN   A 172.17.6.7
+8.ubuntu.com. IN   A 172.17.6.8
+9.ubuntu.com. IN   A 172.17.6.9
+10.ubuntu.com. IN  A 172.17.6.10

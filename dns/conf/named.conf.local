@@ -30,3 +30,8 @@ zone "hbase.com"{
   type master;
   file "/etc/bind/db.hbase.com";
 };
+
+zone "spider.com"{
+  type master;
+  file "/etc/bind/db.spider.com";
+};

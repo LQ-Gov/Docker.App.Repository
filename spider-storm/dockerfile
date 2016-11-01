@@ -1,0 +1,6 @@
+FROM 8036680/python3
+
+RUN pip install click lxml tornado pyquery urllib3 PyMySql six
+
+ENV LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8 
