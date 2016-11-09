@@ -1,6 +1,8 @@
 FROM 8036680/python3
 
-RUN pip install click lxml tornado pyquery urllib3 PyMySql six
+RUN apt-get update && apt-get install -y libcurl4-openssl-dev libssl-dev \ 
+    &&  pip3 install click lxml tornado pyquery urllib3 PyMySql six pycurl \
+    && rm -rf /var/lib/apt/lists/* 
 
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 

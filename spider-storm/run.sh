@@ -40,10 +40,10 @@ if [ "$( sudo docker ps -a | sed -n  "/${name}/p" )"c != ""c ];then
      docker rm ${name} 1>/dev/null;
 fi
 
-docker run -itd --net=none -v ${here}/app:/app  -h "$(expr $i + 2).hadoop.com"  --name=${name} ${image} /bin/bash
+docker run -itd --net=none -v ${here}/app:/app  -h "$(expr $i + 2).spider.com"  --name=${name} ${image} /bin/bash
 pipework docker0 ${name} ${worker}@${docker0}
 
 $here/../set_dns.sh $name
 
-docker exec $name bash -c "cd /app/spider-storm python3.5 main.py --type=worker --params='{\"init.master.host\":\"172.17.4.1\",\"int.master.port\":8844,\"init.fetchers.count\":1}'"
+docker exec -d $name bash -c "cd /app/spider-storm && python3.5 main.py --type=worker --params='{\"init.master.host\":\"172.17.4.1\",\"int.master.port\":8844,\"init.fetchers.count\":1}'"
 done
